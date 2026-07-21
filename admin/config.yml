@@ -1,1 +1,4 @@
-
+backend:
+  name: github
+  repo: Alvarorfontana/contexto.politico
+  branch: main
