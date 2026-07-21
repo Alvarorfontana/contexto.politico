@@ -1,6 +1,5 @@
 
 
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA CROMÁTICA AUTÉNTICA DE THE GUARDIAN --- */
+        /* --- PALETA CROMÁTICA THE GUARDIAN --- */
         :root {
             --guardian-navy: #052962;       /* Azul marino distintivo */
             --guardian-blue: #005689;       /* Azul secundario */
@@ -23,7 +22,7 @@
             --guardian-dark: #121212;       /* Texto oscuro */
             --guardian-bg: #f6f6f6;         /* Fondo gris tenue */
             --guardian-line: #dcdcdc;       /* Líneas divisoras */
-            --guardian-opinion-bg: #fef9e7; /* Fondo crema para columnas de opinión */
+            --guardian-opinion-bg: #fef9e7; /* Fondo crema */
             --blanco: #ffffff;
             
             --fuente-titulo: 'Merriweather', Georgia, serif;
@@ -52,7 +51,7 @@
             padding: 0 15px;
         }
 
-        /* --- ENCABEZADO ESTILO THE GUARDIAN --- */
+        /* --- CABECERA Y SUB-ENCABEZADO --- */
         header {
             background-color: var(--guardian-navy);
             color: var(--blanco);
@@ -69,7 +68,7 @@
         }
 
         .header-main {
-            padding: 25px 0 20px 0;
+            padding: 20px 0 15px 0;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -77,16 +76,14 @@
 
         .site-title {
             font-family: var(--fuente-titulo);
-            font-size: 3.6rem;
+            font-size: 3.5rem;
             font-weight: 900;
             letter-spacing: -1.5px;
             color: var(--blanco);
             line-height: 0.95;
         }
 
-        .site-title span {
-            color: var(--guardian-accent);
-        }
+        .site-title span { color: var(--guardian-accent); }
 
         .edition-tag {
             font-size: 0.85rem;
@@ -97,10 +94,15 @@
             margin-bottom: 6px;
         }
 
-        /* --- NAVEGACIÓN --- */
-        nav {
+        /* --- BARRAS DE NAVEGACIÓN --- */
+        nav.primary-nav {
             background-color: var(--guardian-navy);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav.secondary-nav {
+            background-color: #031b42;
+            border-bottom: 2px solid var(--guardian-navy);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -113,92 +115,107 @@
             white-space: nowrap;
         }
 
-        .nav-menu li a {
+        .primary-nav .nav-menu li a {
             display: block;
-            padding: 12px 18px;
+            padding: 10px 16px;
             color: var(--blanco);
-            font-size: 0.9rem;
-            font-weight: 700;
-            transition: background 0.15s, color 0.15s;
-            border-top: 3px solid transparent;
+            font-size: 0.95rem;
+            font-weight: 800;
+            transition: background 0.15s;
         }
 
-        .nav-menu li a:hover {
+        .primary-nav .nav-menu li a:hover {
             background-color: #031b42;
-            border-top-color: var(--guardian-yellow);
             color: var(--guardian-yellow);
         }
 
-        /* --- CUERPO Y PORTADA --- */
+        .secondary-nav .nav-menu li a {
+            display: block;
+            padding: 8px 14px;
+            color: #d1e8ff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: color 0.15s;
+        }
+
+        .secondary-nav .nav-menu li a:hover {
+            color: var(--guardian-yellow);
+        }
+
+        /* --- CUERPO Y GRILLAS --- */
         main {
-            padding: 20px 0;
+            padding: 25px 0;
             background-color: var(--blanco);
             border-left: 1px solid var(--guardian-line);
             border-right: 1px solid var(--guardian-line);
         }
 
-        .guardian-banner {
-            border-bottom: 2px solid var(--guardian-navy);
-            padding-bottom: 6px;
-            margin-bottom: 20px;
+        /* ESTILO RECTÁNGULO ENMARCADO CON LETRAS BLANCAS */
+        .framed-badge {
+            background-color: var(--guardian-navy);
+            color: var(--blanco);
             font-family: var(--fuente-sans);
-            font-weight: 900;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            color: var(--guardian-navy);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* GRILLA PRINCIPAL (3 COLUMNAS) */
-        .frontpage-grid {
-            display: grid;
-            grid-template-columns: 2.5fr 1.5fr 1fr;
-            gap: 20px;
-            border-bottom: 1px solid var(--guardian-line);
-            padding-bottom: 30px;
-            margin-bottom: 30px;
-        }
-
-        /* COLUMNA 1: NOTICIA DESTACADA */
-        .lead-article {
-            border-right: 1px solid var(--guardian-line);
-            padding-right: 20px;
-        }
-
-        .article-kicker {
-            color: var(--guardian-red);
-            font-weight: 800;
             font-size: 0.85rem;
+            font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 5px;
-            display: block;
+            padding: 6px 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .framed-badge.red {
+            background-color: var(--guardian-red);
+        }
+
+        /* NOTICIA DESTACADA: FOTO A LA DERECHA Y PUNTO PARPADEANTE */
+        .featured-story {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            align-items: start;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--guardian-line);
+            margin-bottom: 25px;
+        }
+
+        /* Animación del Círculo Parpadeante */
+        .live-dot {
+            height: 13px;
+            width: 13px;
+            background-color: var(--guardian-red);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+            animation: blink 1.2s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         .lead-title {
             font-family: var(--fuente-titulo);
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             font-weight: 900;
             line-height: 1.15;
             margin-bottom: 12px;
             color: var(--guardian-navy);
         }
 
-        .lead-title:hover {
-            color: var(--guardian-blue);
-        }
-
         .lead-subtitle {
-            font-family: var(--fuente-sans);
             font-size: 1.05rem;
             color: #444;
+            line-height: 1.45;
             margin-bottom: 15px;
-            line-height: 1.4;
         }
 
         figure {
-            margin-bottom: 12px;
+            margin: 0;
         }
 
         figcaption {
@@ -210,104 +227,57 @@
             line-height: 1.3;
         }
 
-        figcaption strong {
-            color: var(--guardian-navy);
+        /* LAYOUT GENERAL DE PORTADA */
+        .frontpage-grid {
+            display: grid;
+            grid-template-columns: 2.6fr 1.4fr;
+            gap: 30px;
         }
 
-        /* COLUMNA 2: SECUNDARIAS */
-        .secondary-column {
-            border-right: 1px solid var(--guardian-line);
-            padding-right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        /* COLUMNA DERECHA */
+        .sidebar {
+            border-left: 1px solid var(--guardian-line);
+            padding-left: 20px;
         }
 
-        .sub-article {
+        .side-article {
             border-bottom: 1px solid var(--guardian-line);
             padding-bottom: 15px;
+            margin-bottom: 15px;
         }
 
-        .sub-article:last-child {
-            border-bottom: none;
-        }
-
-        .sub-title {
+        .side-title {
             font-family: var(--fuente-titulo);
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 8px;
-            color: var(--guardian-dark);
+            margin-bottom: 6px;
+            line-height: 1.25;
         }
 
-        .sub-title a:hover {
-            color: var(--guardian-blue);
-        }
-
-        /* COLUMNA 3: OPINIÓN (FONDO AMARILLO/CREMA) */
-        .opinion-column {
-            background-color: var(--guardian-opinion-bg);
-            padding: 15px;
-            border-top: 4px solid var(--guardian-yellow);
-            border-left: 1px solid #f2e3b8;
-            border-right: 1px solid #f2e3b8;
-            border-bottom: 1px solid #f2e3b8;
-        }
-
-        .opinion-title {
-            font-family: var(--fuente-titulo);
-            font-size: 1.1rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            color: var(--guardian-navy);
-        }
-
-        .opinion-card {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #e8d7a5;
-            padding-bottom: 10px;
-        }
-
-        .opinion-card:last-child {
-            border-bottom: none;
-        }
-
-        .author-name {
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: var(--guardian-navy);
-        }
-
-        /* SECCIONES POR REGIONES Y TEMAS */
-        .section-row {
+        /* GRILLA INFERIOR DE SECCIONES */
+        .bottom-sections {
             margin-top: 40px;
-            padding-top: 15px;
+            padding-top: 20px;
             border-top: 2px solid var(--guardian-navy);
         }
 
-        .section-grid {
+        .sections-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
             margin-top: 15px;
         }
 
         .card-news {
             border-top: 1px solid var(--guardian-line);
-            padding-top: 10px;
+            padding-top: 12px;
         }
 
         .card-news h3 {
             font-family: var(--fuente-titulo);
-            font-size: 1.15rem;
-            margin-top: 8px;
+            font-size: 1.1rem;
             line-height: 1.25;
-            color: var(--guardian-dark);
-        }
-
-        .card-news h3 a:hover {
-            color: var(--guardian-blue);
+            margin-top: 8px;
         }
 
         /* PIE DE PÁGINA (FOOTER) */
@@ -316,7 +286,6 @@
             color: var(--blanco);
             padding: 40px 0 20px 0;
             border-top: 4px solid var(--guardian-yellow);
-            font-family: var(--fuente-sans);
         }
 
         .footer-grid {
@@ -339,7 +308,6 @@
             font-size: 0.85rem;
             color: #d1e8ff;
             margin-bottom: 8px;
-            line-height: 1.5;
         }
 
         .copyright {
@@ -351,176 +319,188 @@
         }
 
         /* RESPONSIVE */
-        @media (max-width: 992px) {
-            .frontpage-grid {
+        @media (max-width: 850px) {
+            .featured-story, .frontpage-grid {
                 grid-template-columns: 1fr;
             }
-            .lead-article, .secondary-column {
-                border-right: none;
-                padding-right: 0;
-                border-bottom: 1px solid var(--guardian-line);
-                padding-bottom: 20px;
+            .sidebar {
+                border-left: none;
+                padding-left: 0;
+                margin-top: 20px;
+                border-top: 1px solid var(--guardian-line);
+                padding-top: 20px;
             }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .site-title {
-                font-size: 2.5rem;
-            }
+            .site-title { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CABECERA PRINCIPAL -->
+    <!-- CABECERA -->
     <header>
         <div class="container">
             <div class="top-subhead">
-                <span>Edición Digital Argentina e Internacional</span>
+                <span>Edición Digital e Investigación</span>
                 <span>Martes, 2026</span>
             </div>
             <div class="header-main">
                 <div>
-                    <div class="edition-tag">Periodismo Político de Investigación</div>
+                    <div class="edition-tag">Periodismo Político Global</div>
                     <a href="#"><h1 class="site-title">Contexto <span>Político</span></h1></a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
-    <nav>
+    <!-- MENU PRINCIPAL EN CASTELLANO -->
+    <nav class="primary-nav">
         <div class="container">
             <ul class="nav-menu">
-                <li><a href="#nacional">Nacional</a></li>
-                <li><a href="#gremiales">Gremiales</a></li>
-                <li><a href="#latam">Latinoamérica</a></li>
-                <li><a href="#eeuu">EE.UU.</a></li>
-                <li><a href="#europa">Europa</a></li>
-                <li><a href="#asia">Asia</a></li>
-                <li><a href="#medio-oriente">Medio Oriente</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="#opinion">Opinión</a></li>
+                <li><a href="#deportes">Deportes</a></li>
+                <li><a href="#cultura">Cultura</a></li>
+                <li><a href="#estilo-de-vida">Estilo de Vida</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- PORTADA Y NOTICIAS -->
+    <!-- MENU SECUNDARIO CON SECCIONES PEDIDAS -->
+    <nav class="secondary-nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#mundo">Mundo</a></li>
+                <li><a href="#mundial-2026">Mundial 2026</a></li>
+                <li><a href="#politica-eeuu">Política EE.UU.</a></li>
+                <li><a href="#reino-unido">Reino Unido</a></li>
+                <li><a href="#crisis-climatica">Crisis Climática</a></li>
+                <li><a href="#medio-oriente">Medio Oriente</a></li>
+                <li><a href="#ucrania">Ucrania</a></li>
+                <li><a href="#medio-ambiente">Medio Ambiente</a></li>
+                <li><a href="#ciencia">Ciencia</a></li>
+                <li><a href="#desarrollo-global">Desarrollo Global</a></li>
+                <li><a href="#futbol">Fútbol</a></li>
+                <li><a href="#tecnologia">Tecnología</a></li>
+                <li><a href="#negocios">Negocios</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PORTADA Y CONTENIDO -->
     <main>
         <div class="container">
 
-            <div class="guardian-banner">
-                <span>/// Titulares Principales</span>
-            </div>
-
             <div class="frontpage-grid">
+                
+                <!-- COLUMNA IZQUIERDA: NOTICIA PRINCIPAL -->
+                <section class="main-content">
 
-                <!-- COLUMNA 1: NOTICIA PRINCIPAL -->
-                <article class="lead-article" id="nacional">
-                    <span class="article-kicker">Política Nacional & Geopolítica</span>
-                    <a href="#">
-                        <h2 class="lead-title">Reconfiguración estratégica de los mercados energéticos y acuerdos bilaterales</h2>
-                    </a>
-                    <p class="lead-subtitle">
-                        Un análisis exhaustivo sobre los recientes movimientos normativos e institucionales que impactan de manera directa en el comercio regional y la infraestructura estratégica.
-                    </p>
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1000&q=80" alt="Congreso y Política">
-                        <figcaption>
-                            <strong>Enfoque:</strong> Las comisiones parlamentarias debaten los alcances de las nuevas normativas institucionales. Fotografía: Redacción.
-                        </figcaption>
-                    </figure>
-                </article>
-
-                <!-- COLUMNA 2: NOTICIAS SECUNDARIAS -->
-                <section class="secondary-column">
-
-                    <article class="sub-article" id="gremiales">
-                        <span class="article-kicker">Gremiales</span>
+                    <!-- NOTICIA DESTACADA CON CIRCULO PARPADEANTE Y FOTO A LA DERECHA -->
+                    <article class="featured-story">
+                        <div class="story-text">
+                            <!-- Titulo encuadrado en rectángulo -->
+                            <div class="framed-badge red">Último Momento</div>
+                            <h2 class="lead-title">
+                                <span class="live-dot"></span>Reconfiguración geopolítica en los pasajes energéticos del Golfo
+                            </h2>
+                            <p class="lead-subtitle">
+                                Un análisis detallado sobre las recientes resoluciones normativas y diplomáticas que impactan de forma directa en el flujo del comercio marítimo y las dinámicas internacionales.
+                            </p>
+                        </div>
+                        
+                        <!-- FOTO A LA DERECHA -->
                         <figure>
-                            <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=600&q=80" alt="Mesa de negociación">
-                            <figcaption><strong>Encuentro:</strong> Reunión entre delegados y sectores productivos.</figcaption>
+                            <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80" alt="Geopolítica Global">
+                            <figcaption>
+                                <strong>Enfoque:</strong> Representantes internacionales analizan medidas conjuntas. Foto: Redacción.
+                            </figcaption>
                         </figure>
-                        <h3 class="sub-title"><a href="#">Avanzan las negociaciones paritarias con foco en la pauta de recomposición</a></h3>
-                        <p style="font-size: 0.88rem; color: #555;">Representantes gremiales buscan definir los acuerdos del próximo trimestre en medio de complejas mesas de diálogo.</p>
                     </article>
 
-                    <article class="sub-article">
-                        <span class="article-kicker">Economía & Política</span>
-                        <h3 class="sub-title"><a href="#">El impacto de las tasas y los flujos financieros en las economías emergentes</a></h3>
+                    <!-- SEGUNDA NOTICIA DESTACADA -->
+                    <article class="featured-story" style="border-bottom: none;">
+                        <div class="story-text">
+                            <div class="framed-badge">Desarrollo Global</div>
+                            <h2 class="lead-title">
+                                <span class="live-dot"></span>Nuevas directivas sobre regulación de la inteligencia artificial
+                            </h2>
+                            <p class="lead-subtitle">
+                                Comisiones parlamentarias debaten los marcos jurídicos para la supervisión de modelos automatizados en la administración pública.
+                            </p>
+                        </div>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tecnología">
+                            <figcaption>
+                                <strong>Legislación:</strong> Debates legislativos en materia tecnológica.
+                            </figcaption>
+                        </figure>
                     </article>
 
                 </section>
 
-                <!-- COLUMNA 3: SECCIÓN DE OPINIÓN (ESTILO GUARDIAN) -->
-                <aside class="opinion-column">
-                    <div class="opinion-title">Análisis & Columnas</div>
+                <!-- COLUMNA DERECHA ENCABEZADA CON RECTÁNGULOS EN CONTEXTO -->
+                <aside class="sidebar">
 
-                    <div class="opinion-card">
-                        <span class="author-name">Análisis Internacional</span>
-                        <h4 style="font-family: var(--fuente-titulo); font-size: 0.95rem; margin-top: 4px;">
-                            <a href="#">El equilibrio geopolítico en los pasos marítimos de Asia y Medio Oriente</a>
-                        </h4>
-                    </div>
+                    <div class="framed-badge">Medio Oriente & Ucrania</div>
+                    
+                    <article class="side-article">
+                        <h3 class="side-title"><a href="#medio-oriente">Evolución de las mesas de negociación y corredores humanitarios</a></h3>
+                        <p style="font-size: 0.85rem; color: #555;">Seguimiento en tiempo real sobre la situación diplomática.</p>
+                    </article>
 
-                    <div class="opinion-card">
-                        <span class="author-name">Informe Especial</span>
-                        <h4 style="font-family: var(--fuente-titulo); font-size: 0.95rem; margin-top: 4px;">
-                            <a href="#">Las transformaciones legislativas que reconfiguran el empleo público</a>
-                        </h4>
-                    </div>
+                    <article class="side-article">
+                        <h3 class="side-title"><a href="#ucrania">Impacto económico y acuerdos regionales de reconstrucción</a></h3>
+                    </article>
+
+                    <div class="framed-badge red" style="margin-top: 15px;">Mundial 2026 & Deportes</div>
+
+                    <article class="side-article">
+                        <h3 class="side-title"><a href="#mundial-2026">Preparativos logísticos e infraestructura para la cita orbital</a></h3>
+                        <p style="font-size: 0.85rem; color: #555;">Avances en la organización de las sedes oficiales.</p>
+                    </article>
 
                 </aside>
 
             </div>
 
-            <!-- GRILLA DE ÁREAS REGIONALES -->
-            <div class="section-row">
-                <div class="guardian-banner">
-                    <span>/// Cobertura Internacional</span>
-                </div>
+            <!-- SECCIÓN INFERIOR ENMARCADA EN RECTÁNGULOS -->
+            <section class="bottom-sections">
 
-                <div class="section-grid">
+                <div class="framed-badge">Mundo, Ciencia & Negocios</div>
 
-                    <!-- LATINOAMÉRICA -->
-                    <article class="card-news" id="latam">
-                        <span class="article-kicker">Latinoamérica</span>
-                        <figure>
-                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="Latinoamérica">
-                            <figcaption><strong>Cumbre:</strong> Avances en integración económica regional.</figcaption>
-                        </figure>
-                        <h3><a href="#">Nuevos ejes diplomáticos y acuerdos comerciales en Sudamérica</a></h3>
+                <div class="sections-grid">
+
+                    <!-- SECCIÓN POLÍTICA EE.UU. -->
+                    <article class="card-news" id="politica-eeuu">
+                        <div class="framed-badge" style="font-size: 0.7rem; padding: 3px 8px;">Política EE.UU.</div>
+                        <h3><a href="#">Debates presupuestarios en el Senado dominan la agenda en Washington</a></h3>
                     </article>
 
-                    <!-- ESTADOS UNIDOS -->
-                    <article class="card-news" id="eeuu">
-                        <span class="article-kicker">Estados Unidos</span>
-                        <h3><a href="#">Debates presupuestarios marcan la pauta legislativa en Washington</a></h3>
-                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Las comisiones de política exterior analizan partidas clave para la región.</p>
+                    <!-- SECCIÓN CRISIS CLIMÁTICA -->
+                    <article class="card-news" id="crisis-climatica">
+                        <div class="framed-badge red" style="font-size: 0.7rem; padding: 3px 8px;">Crisis Climática</div>
+                        <h3><a href="#">Nuevos compromisos de descarbonización presentados en la cumbre del clima</a></h3>
                     </article>
 
-                    <!-- EUROPA -->
-                    <article class="card-news" id="europa">
-                        <span class="article-kicker">Europa</span>
-                        <h3><a href="#">Bruselas reajusta las pautas regulatorias para el mercado energético</a></h3>
-                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Medidas orientadas a garantizar la resiliencia en la transición verde.</p>
+                    <!-- SECCIÓN TECNOLOGÍA -->
+                    <article class="card-news" id="tecnologia">
+                        <div class="framed-badge" style="font-size: 0.7rem; padding: 3px 8px;">Tecnología</div>
+                        <h3><a href="#">El avance de los chips cuánticos y su impacto en la infraestructura digital</a></h3>
                     </article>
 
-                    <!-- MEDIO ORIENTE & ASIA -->
-                    <article class="card-news" id="medio-oriente">
-                        <span class="article-kicker">Medio Oriente & Asia</span>
-                        <figure>
-                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80" alt="Medio Oriente">
-                            <figcaption><strong>Rutas comerciales:</strong> Monitoreo de corredores de carga.</figcaption>
-                        </figure>
-                        <h3><a href="#">Dinamismo en los estrechos clave y logística de hidrocarburos</a></h3>
+                    <!-- SECCIÓN NEGOCIOS -->
+                    <article class="card-news" id="negocios">
+                        <div class="framed-badge" style="font-size: 0.7rem; padding: 3px 8px;">Negocios</div>
+                        <h3><a href="#">Comportamiento de las tasas financieras y mercados emergentes</a></h3>
                     </article>
 
                 </div>
-            </div>
+            </section>
 
         </div>
     </main>
 
-    <!-- PIE DE PÁGINA FOOTER -->
+    <!-- PIE DE PÁGINA (FOOTER) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -533,7 +513,7 @@
                 <div class="footer-info">
                     <h4 style="color: var(--guardian-yellow); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;">Institucional</h4>
                     <p><strong>Director Responsable:</strong> Álvaro Ramón Fontana Leguizamón</p>
-                    <p><strong>Redacción:</strong> contacto@contextopolitico.com</p>
+                    <p><strong>Contacto:</strong> contacto@contextopolitico.com</p>
                 </div>
 
                 <div class="footer-info">
@@ -552,5 +532,3 @@
 
 </body>
 </html>
-
-```
