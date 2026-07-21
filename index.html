@@ -14,15 +14,14 @@
     <style>
         /* --- PALETA CROMÁTICA THE GUARDIAN --- */
         :root {
-            --guardian-navy: #052962;       /* Azul marino distintivo */
+            --guardian-navy: #052962;       /* Azul marino */
             --guardian-blue: #005689;       /* Azul secundario */
-            --guardian-accent: #00b2ff;     /* Celeste de acento */
+            --guardian-accent: #00b2ff;     /* Celeste */
             --guardian-yellow: #ffe500;     /* Amarillo Guardian */
-            --guardian-red: #c70000;        /* Rojo de urgencia/alertas */
+            --guardian-red: #c70000;        /* Rojo de urgencia */
             --guardian-dark: #121212;       /* Texto oscuro */
-            --guardian-bg: #f6f6f6;         /* Fondo gris tenue */
+            --guardian-bg: #f6f6f6;         /* Fondo gris */
             --guardian-line: #dcdcdc;       /* Líneas divisoras */
-            --guardian-opinion-bg: #fef9e7; /* Fondo crema */
             --blanco: #ffffff;
             
             --fuente-titulo: 'Merriweather', Georgia, serif;
@@ -42,7 +41,7 @@
             line-height: 1.4;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; cursor: pointer; }
         img { max-width: 100%; height: auto; display: block; }
 
         .container {
@@ -51,7 +50,7 @@
             padding: 0 15px;
         }
 
-        /* --- CABECERA Y SUB-ENCABEZADO --- */
+        /* --- CABECERA Y ENCABEZADO --- */
         header {
             background-color: var(--guardian-navy);
             color: var(--blanco);
@@ -81,6 +80,7 @@
             letter-spacing: -1.5px;
             color: var(--blanco);
             line-height: 0.95;
+            cursor: pointer;
         }
 
         .site-title span { color: var(--guardian-accent); }
@@ -142,15 +142,16 @@
             color: var(--guardian-yellow);
         }
 
-        /* --- CUERPO Y GRILLAS --- */
+        /* --- CUERPO GENERAL --- */
         main {
             padding: 25px 0;
             background-color: var(--blanco);
             border-left: 1px solid var(--guardian-line);
             border-right: 1px solid var(--guardian-line);
+            min-height: 70vh;
         }
 
-        /* ESTILO RECTÁNGULO ENMARCADO CON LETRAS BLANCAS */
+        /* RECTÁNGULOS ENMARCADOS CON LETRAS BLANCAS */
         .framed-badge {
             background-color: var(--guardian-navy);
             color: var(--blanco);
@@ -169,7 +170,7 @@
             background-color: var(--guardian-red);
         }
 
-        /* NOTICIA DESTACADA: FOTO A LA DERECHA Y PUNTO PARPADEANTE */
+        /* NOTICIA DESTACADA: PARPADEANTE + FOTO A LA DERECHA */
         .featured-story {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -180,7 +181,6 @@
             margin-bottom: 25px;
         }
 
-        /* Animación del Círculo Parpadeante */
         .live-dot {
             height: 13px;
             width: 13px;
@@ -207,6 +207,10 @@
             color: var(--guardian-navy);
         }
 
+        .lead-title:hover {
+            color: var(--guardian-blue);
+        }
+
         .lead-subtitle {
             font-size: 1.05rem;
             color: #444;
@@ -214,9 +218,7 @@
             margin-bottom: 15px;
         }
 
-        figure {
-            margin: 0;
-        }
+        figure { margin: 0; }
 
         figcaption {
             font-size: 0.8rem;
@@ -227,14 +229,13 @@
             line-height: 1.3;
         }
 
-        /* LAYOUT GENERAL DE PORTADA */
+        /* LAYOUT DE PORTADA */
         .frontpage-grid {
             display: grid;
             grid-template-columns: 2.6fr 1.4fr;
             gap: 30px;
         }
 
-        /* COLUMNA DERECHA */
         .sidebar {
             border-left: 1px solid var(--guardian-line);
             padding-left: 20px;
@@ -253,6 +254,8 @@
             margin-bottom: 6px;
             line-height: 1.25;
         }
+
+        .side-title:hover { color: var(--guardian-blue); }
 
         /* GRILLA INFERIOR DE SECCIONES */
         .bottom-sections {
@@ -280,7 +283,74 @@
             margin-top: 8px;
         }
 
-        /* PIE DE PÁGINA (FOOTER) */
+        .card-news h3:hover { color: var(--guardian-blue); }
+
+        /* --- VISTA DE NOTA DESARROLLADA (PÁGINA INDIVIDUAL) --- */
+        #article-view {
+            display: none; /* Oculto por defecto */
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .back-btn {
+            background-color: var(--guardian-navy);
+            color: var(--blanco);
+            border: none;
+            padding: 8px 16px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background-color: var(--guardian-red);
+        }
+
+        .article-header-title {
+            font-family: var(--fuente-titulo);
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--guardian-navy);
+            margin-bottom: 15px;
+        }
+
+        .article-header-subtitle {
+            font-size: 1.25rem;
+            color: #444;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .article-meta {
+            border-top: 1px solid var(--guardian-line);
+            border-bottom: 1px solid var(--guardian-line);
+            padding: 10px 0;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .article-meta strong { color: var(--guardian-dark); }
+
+        .article-body p {
+            font-family: Georgia, serif;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
         footer {
             background-color: var(--guardian-navy);
             color: var(--blanco);
@@ -320,23 +390,16 @@
 
         /* RESPONSIVE */
         @media (max-width: 850px) {
-            .featured-story, .frontpage-grid {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                border-left: none;
-                padding-left: 0;
-                margin-top: 20px;
-                border-top: 1px solid var(--guardian-line);
-                padding-top: 20px;
-            }
+            .featured-story, .frontpage-grid { grid-template-columns: 1fr; }
+            .sidebar { border-left: none; padding-left: 0; margin-top: 20px; border-top: 1px solid var(--guardian-line); padding-top: 20px; }
             .site-title { font-size: 2.5rem; }
+            .article-header-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CABECERA -->
+    <!-- CABECERA PRINCIPAL -->
     <header>
         <div class="container">
             <div class="top-subhead">
@@ -346,82 +409,82 @@
             <div class="header-main">
                 <div>
                     <div class="edition-tag">Periodismo Político Global</div>
-                    <a href="#"><h1 class="site-title">Contexto <span>Político</span></h1></a>
+                    <h1 class="site-title" onclick="showFrontpage()">Contexto <span>Político</span></h1>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- MENU PRINCIPAL EN CASTELLANO -->
+    <!-- NAVEGACIÓN -->
     <nav class="primary-nav">
         <div class="container">
             <ul class="nav-menu">
-                <li><a href="#noticias">Noticias</a></li>
-                <li><a href="#opinion">Opinión</a></li>
-                <li><a href="#deportes">Deportes</a></li>
-                <li><a href="#cultura">Cultura</a></li>
-                <li><a href="#estilo-de-vida">Estilo de Vida</a></li>
+                <li><a onclick="showFrontpage()">Noticias</a></li>
+                <li><a onclick="showFrontpage()">Opinión</a></li>
+                <li><a onclick="showFrontpage()">Deportes</a></li>
+                <li><a onclick="showFrontpage()">Cultura</a></li>
+                <li><a onclick="showFrontpage()">Estilo de Vida</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- MENU SECUNDARIO CON SECCIONES PEDIDAS -->
     <nav class="secondary-nav">
         <div class="container">
             <ul class="nav-menu">
-                <li><a href="#mundo">Mundo</a></li>
-                <li><a href="#mundial-2026">Mundial 2026</a></li>
-                <li><a href="#politica-eeuu">Política EE.UU.</a></li>
-                <li><a href="#reino-unido">Reino Unido</a></li>
-                <li><a href="#crisis-climatica">Crisis Climática</a></li>
-                <li><a href="#medio-oriente">Medio Oriente</a></li>
-                <li><a href="#ucrania">Ucrania</a></li>
-                <li><a href="#medio-ambiente">Medio Ambiente</a></li>
-                <li><a href="#ciencia">Ciencia</a></li>
-                <li><a href="#desarrollo-global">Desarrollo Global</a></li>
-                <li><a href="#futbol">Fútbol</a></li>
-                <li><a href="#tecnologia">Tecnología</a></li>
-                <li><a href="#negocios">Negocios</a></li>
+                <li><a onclick="showFrontpage()">Mundo</a></li>
+                <li><a onclick="showFrontpage()">Mundial 2026</a></li>
+                <li><a onclick="showFrontpage()">Política EE.UU.</a></li>
+                <li><a onclick="showFrontpage()">Reino Unido</a></li>
+                <li><a onclick="showFrontpage()">Crisis Climática</a></li>
+                <li><a onclick="showFrontpage()">Medio Oriente</a></li>
+                <li><a onclick="showFrontpage()">Ucrania</a></li>
+                <li><a onclick="showFrontpage()">Medio Ambiente</a></li>
+                <li><a onclick="showFrontpage()">Ciencia</a></li>
+                <li><a onclick="showFrontpage()">Desarrollo Global</a></li>
+                <li><a onclick="showFrontpage()">Fútbol</a></li>
+                <li><a onclick="showFrontpage()">Tecnología</a></li>
+                <li><a onclick="showFrontpage()">Negocios</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- PORTADA Y CONTENIDO -->
-    <main>
-        <div class="container">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
 
+        <!-- ===== VISTA 1: PORTADA PRINCIPAL ===== -->
+        <div id="frontpage-view">
+            
             <div class="frontpage-grid">
                 
                 <!-- COLUMNA IZQUIERDA: NOTICIA PRINCIPAL -->
                 <section class="main-content">
 
-                    <!-- NOTICIA DESTACADA CON CIRCULO PARPADEANTE Y FOTO A LA DERECHA -->
+                    <!-- NOTICIA 1 -->
                     <article class="featured-story">
                         <div class="story-text">
-                            <!-- Titulo encuadrado en rectángulo -->
                             <div class="framed-badge red">Último Momento</div>
-                            <h2 class="lead-title">
+                            <h2 class="lead-title" onclick="openArticle('nota1')">
                                 <span class="live-dot"></span>Reconfiguración geopolítica en los pasajes energéticos del Golfo
                             </h2>
                             <p class="lead-subtitle">
                                 Un análisis detallado sobre las recientes resoluciones normativas y diplomáticas que impactan de forma directa en el flujo del comercio marítimo y las dinámicas internacionales.
                             </p>
                         </div>
-                        
-                        <!-- FOTO A LA DERECHA -->
                         <figure>
-                            <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80" alt="Geopolítica Global">
+                            <a onclick="openArticle('nota1')">
+                                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80" alt="Geopolítica Global">
+                            </a>
                             <figcaption>
                                 <strong>Enfoque:</strong> Representantes internacionales analizan medidas conjuntas. Foto: Redacción.
                             </figcaption>
                         </figure>
                     </article>
 
-                    <!-- SEGUNDA NOTICIA DESTACADA -->
+                    <!-- NOTICIA 2 -->
                     <article class="featured-story" style="border-bottom: none;">
                         <div class="story-text">
                             <div class="framed-badge">Desarrollo Global</div>
-                            <h2 class="lead-title">
+                            <h2 class="lead-title" onclick="openArticle('nota2')">
                                 <span class="live-dot"></span>Nuevas directivas sobre regulación de la inteligencia artificial
                             </h2>
                             <p class="lead-subtitle">
@@ -429,7 +492,9 @@
                             </p>
                         </div>
                         <figure>
-                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tecnología">
+                            <a onclick="openArticle('nota2')">
+                                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tecnología">
+                            </a>
                             <figcaption>
                                 <strong>Legislación:</strong> Debates legislativos en materia tecnológica.
                             </figcaption>
@@ -438,24 +503,24 @@
 
                 </section>
 
-                <!-- COLUMNA DERECHA ENCABEZADA CON RECTÁNGULOS EN CONTEXTO -->
+                <!-- COLUMNA DERECHA -->
                 <aside class="sidebar">
 
                     <div class="framed-badge">Medio Oriente & Ucrania</div>
                     
                     <article class="side-article">
-                        <h3 class="side-title"><a href="#medio-oriente">Evolución de las mesas de negociación y corredores humanitarios</a></h3>
+                        <h3 class="side-title" onclick="openArticle('nota3')">Evolución de las mesas de negociación y corredores humanitarios</h3>
                         <p style="font-size: 0.85rem; color: #555;">Seguimiento en tiempo real sobre la situación diplomática.</p>
                     </article>
 
                     <article class="side-article">
-                        <h3 class="side-title"><a href="#ucrania">Impacto económico y acuerdos regionales de reconstrucción</a></h3>
+                        <h3 class="side-title" onclick="openArticle('nota4')">Impacto económico y acuerdos regionales de reconstrucción</h3>
                     </article>
 
                     <div class="framed-badge red" style="margin-top: 15px;">Mundial 2026 & Deportes</div>
 
                     <article class="side-article">
-                        <h3 class="side-title"><a href="#mundial-2026">Preparativos logísticos e infraestructura para la cita orbital</a></h3>
+                        <h3 class="side-title" onclick="openArticle('nota5')">Preparativos logísticos e infraestructura para la cita orbital</h3>
                         <p style="font-size: 0.85rem; color: #555;">Avances en la organización de las sedes oficiales.</p>
                     </article>
 
@@ -470,37 +535,60 @@
 
                 <div class="sections-grid">
 
-                    <!-- SECCIÓN POLÍTICA EE.UU. -->
-                    <article class="card-news" id="politica-eeuu">
+                    <article class="card-news">
                         <div class="framed-badge" style="font-size: 0.7rem; padding: 3px 8px;">Política EE.UU.</div>
-                        <h3><a href="#">Debates presupuestarios en el Senado dominan la agenda en Washington</a></h3>
+                        <h3 onclick="openArticle('nota6')">Debates presupuestarios en el Senado dominan la agenda en Washington</h3>
                     </article>
 
-                    <!-- SECCIÓN CRISIS CLIMÁTICA -->
-                    <article class="card-news" id="crisis-climatica">
+                    <article class="card-news">
                         <div class="framed-badge red" style="font-size: 0.7rem; padding: 3px 8px;">Crisis Climática</div>
-                        <h3><a href="#">Nuevos compromisos de descarbonización presentados en la cumbre del clima</a></h3>
+                        <h3 onclick="openArticle('nota7')">Nuevos compromisos de descarbonización presentados en la cumbre del clima</h3>
                     </article>
 
-                    <!-- SECCIÓN TECNOLOGÍA -->
-                    <article class="card-news" id="tecnologia">
+                    <article class="card-news">
                         <div class="framed-badge" style="font-size: 0.7rem; padding: 3px 8px;">Tecnología</div>
-                        <h3><a href="#">El avance de los chips cuánticos y su impacto en la infraestructura digital</a></h3>
+                        <h3 onclick="openArticle('nota8')">El avance de los chips cuánticos y su impacto en la infraestructura digital</h3>
                     </article>
 
-                    <!-- SECCIÓN NEGOCIOS -->
-                    <article class="card-news" id="negocios">
+                    <article class="card-news">
                         <div class="framed-badge" style="font-size: 0.7rem; padding: 3px 8px;">Negocios</div>
-                        <h3><a href="#">Comportamiento de las tasas financieras y mercados emergentes</a></h3>
+                        <h3 onclick="openArticle('nota9')">Comportamiento de las tasas financieras y mercados emergentes</h3>
                     </article>
 
                 </div>
             </section>
 
         </div>
+
+
+        <!-- ===== VISTA 2: DESARROLLO COMPLETO DE LA NOTA ===== -->
+        <div id="article-view">
+            <button class="back-btn" onclick="showFrontpage()">← Volver a la portada</button>
+            
+            <div id="article-badge" class="framed-badge red">Sección</div>
+            <h1 id="article-title" class="article-header-title">Título de la noticia</h1>
+            <p id="article-subtitle" class="article-header-subtitle">Subtítulo explicativo de la noticia.</p>
+            
+            <div class="article-meta">
+                <span>Por <strong>Redacción Contexto Político</strong></span>
+                <span>Publicado: <strong>Julio de 2026</strong></span>
+            </div>
+
+            <figure style="margin-bottom: 25px;">
+                <img id="article-img" src="" alt="Imagen de la nota">
+                <figcaption id="article-caption"></figcaption>
+            </figure>
+
+            <div id="article-body" class="article-body">
+                <!-- Aquí se inyecta el texto completo de la noticia -->
+            </div>
+
+            <button class="back-btn" onclick="showFrontpage()" style="margin-top: 30px;">← Volver a la portada</button>
+        </div>
+
     </main>
 
-    <!-- PIE DE PÁGINA (FOOTER) -->
+    <!-- PIE DE PÁGINA FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -529,6 +617,146 @@
             </div>
         </div>
     </footer>
+
+    <!-- LÓGICA DE INTERACCIÓN (JAVASCRIPT) -->
+    <script>
+        // Banco de datos con las noticias completas
+        const articlesData = {
+            'nota1': {
+                badge: 'Último Momento',
+                badgeColor: 'red',
+                title: 'Reconfiguración geopolítica en los pasajes energéticos del Golfo',
+                subtitle: 'Un análisis detallado sobre las recientes resoluciones normativas y diplomáticas que impactan de forma directa en el flujo del comercio marítimo y las dinámicas internacionales.',
+                img: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Enfoque: Representantes internacionales analizan medidas conjuntas. Foto: Redacción.',
+                body: `
+                    <p>El panorama geopolítico en los pasajes marítimos estratégicos vuelve a concentrar la atención global tras los más recientes desarrollos normativos y los acuerdos alcanzados en las mesas de diálogo diplomático. Las decisiones adoptadas en las últimas horas buscan garantizar la continuidad operacional de los flujos de hidrocarburos y mercaderías.</p>
+                    <p>Expertos en política internacional señalan que la articulación entre organismos multilaterales y actores regionales resulta crucial para mitigar la volatilidad en las tarifas del transporte marítimo. Las rutas clave continúan bajo constante monitoreo por parte de comisiones técnicas.</p>
+                    <p>En este sentido, el impacto directo sobre los mercados energéticos globales ya se hace sentir en los principales indicadores económicos, reconfigurando de manera acelerada las proyecciones para el segundo semestre del año.</p>
+                `
+            },
+            'nota2': {
+                badge: 'Desarrollo Global',
+                badgeColor: 'navy',
+                title: 'Nuevas directivas sobre regulación de la inteligencia artificial',
+                subtitle: 'Comisiones parlamentarias debaten los marcos jurídicos para la supervisión de modelos automatizados en la administración pública.',
+                img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Legislación: Debates legislativos en materia tecnológica.',
+                body: `
+                    <p>Los principales órganos legislativos avanzan en la formulación de marcos jurídicos adaptados al rápido despliegue de las herramientas de inteligencia artificial. El debate se centra en equilibrar la innovación tecnológica con la protección de datos personales y la transparencia algorítmica.</p>
+                    <p>Especialistas del sector público y la academia destacaron la urgencia de establecer estándares éticos claros que regulen el uso de sistemas automatizados en auditorías, gestión de datos institucionales y servicios a la ciudadanía.</p>
+                `
+            },
+            'nota3': {
+                badge: 'Medio Oriente',
+                badgeColor: 'navy',
+                title: 'Evolución de las mesas de negociación y corredores humanitarios',
+                subtitle: 'Seguimiento en tiempo real sobre los esfuerzos diplomáticos e internacionales.',
+                img: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Puntos de encuentro y logística internacional.',
+                body: `
+                    <p>Las mesas de negociación multilateral coordinadas por organismos internacionales registran avances cautelosos en la delimitación de corredores seguros. Las delegaciones participantes han enfatizado la prioridad de asegurar la asistencia logística y suministros básicos.</p>
+                `
+            },
+            'nota4': {
+                badge: 'Ucrania',
+                badgeColor: 'navy',
+                title: 'Impacto económico y acuerdos regionales de reconstrucción',
+                subtitle: 'Bancos de desarrollo evalúan partidas financieras para infraestructura estratégica.',
+                img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Infraestructura e inversiones de mediano plazo.',
+                body: `
+                    <p>Representantes del sector financiero multilateral formalizaron la asignación de líneas de crédito destinadas a la restauración de redes energéticas y conectividad vial en las áreas afectadas por el conflicto.</p>
+                `
+            },
+            'nota5': {
+                badge: 'Mundial 2026',
+                badgeColor: 'red',
+                title: 'Preparativos logísticos e infraestructura para la cita orbital',
+                subtitle: 'Las sedes organizadoras ultiman detalles en estadios, transporte y seguridad.',
+                img: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Coordinación logística internacional.',
+                body: `
+                    <p>A medida que se aproxima la cita futbolística internacional, los comités organizadores han presentado informes detallados sobre la capacidad hotelera, modernización de aeropuertos y despliegue operacional de transporte para millones de aficionados.</p>
+                `
+            },
+            'nota6': {
+                badge: 'Política EE.UU.',
+                badgeColor: 'navy',
+                title: 'Debates presupuestarios en el Senado dominan la agenda en Washington',
+                subtitle: 'Líderes de ambas bancadas negocian las partidas fiscales para política exterior.',
+                img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Sesión ordinaria en el Capitolio.',
+                body: `
+                    <p>Las discusiones en el Capitolio entran en una etapa decisiva para definir el techo presupuestario del año fiscal, con especial atención en las transferencias a programas internacionales e iniciativas medioambientales.</p>
+                `
+            },
+            'nota7': {
+                badge: 'Crisis Climática',
+                badgeColor: 'red',
+                title: 'Nuevos compromisos de descarbonización presentados en la cumbre del clima',
+                subtitle: 'Países industrializados proponen acelerar las metas para el año 2030.',
+                img: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Compromiso medioambiental y transición energética.',
+                body: `
+                    <p>La nueva ronda de conversaciones climáticas concluyó con la suscripción de acuerdos vinculantes enfocados en reducir progresivamente el consumo de combustibles fósiles e incentivar inversiones en energías renovables.</p>
+                `
+            },
+            'nota8': {
+                badge: 'Tecnología',
+                badgeColor: 'navy',
+                title: 'El avance de los chips cuánticos y su impacto en la infraestructura digital',
+                subtitle: 'Investigaciones de vanguardia logran récords en velocidad de procesamiento.',
+                img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Desarrollos de última generación.',
+                body: `
+                    <p>El anuncio de nuevos procesadores cuánticos con mayor estabilidad térmica promete transformar campos complejos como la criptografía, la simulación farmacológica y el procesamiento masivo de datos a nivel global.</p>
+                `
+            },
+            'nota9': {
+                badge: 'Negocios',
+                badgeColor: 'navy',
+                title: 'Comportamiento de las tasas financieras y mercados emergentes',
+                subtitle: 'Análisis sobre las tendencias en los flujos de inversión en la región.',
+                img: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1000&q=80',
+                caption: 'Análisis de mercados de capitales.',
+                body: `
+                    <p>Las fluctuaciones de las tasas de interés internacionales siguen moldeando las expectativas de rentabilidad en las bolsas regionales. Analistas recomiendan cautela frente a los próximos anuncios de los bancos centrales.</p>
+                `
+            }
+        };
+
+        // Función para abrir la nota desarrollada
+        function openArticle(articleId) {
+            const data = articlesData[articleId];
+            if (!data) return;
+
+            // Inyectamos la información en el contenedor de artículo
+            const badgeEl = document.getElementById('article-badge');
+            badgeEl.innerText = data.badge;
+            badgeEl.className = `framed-badge ${data.badgeColor === 'red' ? 'red' : ''}`;
+
+            document.getElementById('article-title').innerText = data.title;
+            document.getElementById('article-subtitle').innerText = data.subtitle;
+            document.getElementById('article-img').src = data.img;
+            document.getElementById('article-caption').innerText = data.caption;
+            document.getElementById('article-body').innerHTML = data.body;
+
+            // Ocultamos la portada y mostramos el artículo
+            document.getElementById('frontpage-view').style.display = 'none';
+            document.getElementById('article-view').style.display = 'block';
+
+            // Desplazamos la pantalla arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Función para volver a la portada
+        function showFrontpage() {
+            document.getElementById('article-view').style.display = 'none';
+            document.getElementById('frontpage-view').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
