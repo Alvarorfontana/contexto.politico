@@ -11,8 +11,6 @@ collections:
     label: "Noticias"
     folder: "noticias"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime" }
-      - { label: "Cuerpo de la nota", name: "body", widget: "markdown" }
+      - { label: "Cuerpo", name: "body", widget: "markdown" }
