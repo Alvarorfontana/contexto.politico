@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: Alvarorfontana/contexto-politico
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "content/noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "json"
+    fields:
+      - { label: "ID Único", name: "id", widget: "string", default: "nota-2" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Subtítulo / Copete", name: "subtitle", widget: "text" }
+      - { label: "Etiqueta (Sección)", name: "badge", widget: "string", default: "Política Nacional" }
+      - { label: "Color de Etiqueta", name: "badgeColor", widget: "select", options: ["red", "navy"] }
+      - { label: "Imagen (URL o Subida)", name: "img", widget: "image" }
+      - { label: "Epígrafe de Imagen", name: "caption", widget: "string" }
+      - { label: "Cuerpo de la Nota (HTML)", name: "body", widget: "text" }
