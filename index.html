@@ -1,6 +1,5 @@
 
-
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -200,11 +199,12 @@
 
         .lead-title {
             font-family: var(--fuente-titulo);
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            line-height: 1.15;
+            line-height: 1.2;
             margin-bottom: 12px;
             color: var(--guardian-navy);
+            cursor: pointer;
         }
 
         .lead-title:hover {
@@ -253,6 +253,7 @@
             font-weight: 700;
             margin-bottom: 6px;
             line-height: 1.25;
+            cursor: pointer;
         }
 
         .side-title:hover { color: var(--guardian-blue); }
@@ -281,13 +282,14 @@
             font-size: 1.1rem;
             line-height: 1.25;
             margin-top: 8px;
+            cursor: pointer;
         }
 
         .card-news h3:hover { color: var(--guardian-blue); }
 
-        /* --- VISTA DE NOTA DESARROLLADA (PÁGINA INDIVIDUAL) --- */
+        /* --- VISTA DE NOTA DESARROLLADA --- */
         #article-view {
-            display: none; /* Oculto por defecto */
+            display: none;
             max-width: 900px;
             margin: 0 auto;
             padding: 10px 20px;
@@ -314,17 +316,17 @@
 
         .article-header-title {
             font-family: var(--fuente-titulo);
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.15;
             color: var(--guardian-navy);
             margin-bottom: 15px;
         }
 
         .article-header-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: #444;
-            line-height: 1.4;
+            line-height: 1.45;
             margin-bottom: 20px;
             font-weight: 400;
         }
@@ -388,12 +390,11 @@
             text-align: center;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 850px) {
             .featured-story, .frontpage-grid { grid-template-columns: 1fr; }
             .sidebar { border-left: none; padding-left: 0; margin-top: 20px; border-top: 1px solid var(--guardian-line); padding-top: 20px; }
             .site-title { font-size: 2.5rem; }
-            .article-header-title { font-size: 2rem; }
+            .article-header-title { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -465,21 +466,17 @@
                             <div class="framed-badge red">Último Momento</div>
                             <h2 class="lead-title" onclick="openArticle('nota1')">
                                 <span class="live-dot"></span>La cúpula de la CGT hizo valer su peso político e institucional para frenar el ahogo financiero que imponía la reglamentación de la Ley de Modernización Laboral
-
                             </h2>
                             <p class="lead-subtitle">
                                 A través de negociaciones reservadas y la amenaza latente de judicializar el sistema, la central obrera logró que la Casa Rosada firme el Decreto 612/2026 y reconsidere la base salarial de los aportes sindicales.
-
-
                             </p>
                         </div>
                         <figure>
                             <a onclick="openArticle('nota1')">
-                                <img src="https://media.ambito.com/p/24d2efce4e1687e36baff24ca4c6fa10/adjuntos/239/imagenes/043/181/0043181208/1200x675/778x486:798x506/triunvirato-cgt.jpeg"
- ">
+                                <img src="https://media.ambito.com/p/24d2efce4e1687e36baff24ca4c6fa10/adjuntos/239/imagenes/043/181/0043181208/1200x675/778x486:798x506/triunvirato-cgt.jpeg" alt="Conducción CGT">
                             </a>
                             <figcaption>
-                                <strong>Enfoque:</strong> Representantes internacionales analizan medidas conjuntas. Foto: Redacción.
+                                <strong>Enfoque:</strong> La conducción cegetista logró la revisión de la base de aportes convencionales. Foto: Redacción.
                             </figcaption>
                         </figure>
                     </article>
@@ -532,7 +529,7 @@
 
             </div>
 
-            <!-- SECCIÓN INFERIOR ENMARCADA EN RECTÁNGULOS -->
+            <!-- SECCIÓN INFERIOR -->
             <section class="bottom-sections">
 
                 <div class="framed-badge">Mundo, Ciencia & Negocios</div>
@@ -564,7 +561,6 @@
 
         </div>
 
-
         <!-- ===== VISTA 2: DESARROLLO COMPLETO DE LA NOTA ===== -->
         <div id="article-view">
             <button class="back-btn" onclick="showFrontpage()">← Volver a la portada</button>
@@ -583,9 +579,7 @@
                 <figcaption id="article-caption"></figcaption>
             </figure>
 
-            <div id="article-body" class="article-body">
-                <!-- Aquí se inyecta el texto completo de la noticia -->
-            </div>
+            <div id="article-body" class="article-body"></div>
 
             <button class="back-btn" onclick="showFrontpage()" style="margin-top: 30px;">← Volver a la portada</button>
         </div>
@@ -624,34 +618,21 @@
 
     <!-- LÓGICA DE INTERACCIÓN (JAVASCRIPT) -->
     <script>
-        // Banco de datos con las noticias completas
         const articlesData = {
             'nota1': {
                 badge: 'Último Momento',
                 badgeColor: 'red',
-                title: 'La cúpula de la CGT hizo valer su peso político e institucional para frenar el ahogo financiero que imponía la reglamentación de la Ley de Modernización Laboral
-
-',
-                subtitle: 'A través de negociaciones reservadas y la amenaza latente de judicializar el sistema, la central obrera logró que la Casa Rosada firme el Decreto 612/2026 y reconsidere la base salarial de los aportes sindicales.
-.',
+                title: 'La cúpula de la CGT hizo valer su peso político e institucional para frenar el ahogo financiero que imponía la reglamentación de la Ley de Modernización Laboral',
+                subtitle: 'A través de negociaciones reservadas y la amenaza latente de judicializar el sistema, la central obrera logró que la Casa Rosada firme el Decreto 612/2026 y reconsidere la base salarial de los aportes sindicales.',
                 img: 'https://cholilaonline.ar/wp-content/uploads/2026/07/El-Gobierno-modifico-la-reglamentacion-laboral.webp',
-                caption: 'Enfoque: Representantes de la CGT negociaron una controvertida ley. Foto: Redacción.',
+                caption: 'Enfoque: Representantes de la CGT negociaron modificaciones clave. Foto: Redacción.',
                 body: `
-                    <p>La tensión en los pasillos del poder político y sindical había tocado su punto más alto a fines de mayo de 2026, inmediatamente después de que el Congreso de la Nación aprobara la Ley N° 27.802 de Modernización Laboral. Cuando el Poder Ejecutivo avanzó en la reglamentación inicial mediante el Decreto 407/2026, el Ministerio de Desregulación introdujo una cláusula que encendió todas las alarmas en el histórico edificio de la calle Azopardo. La norma establecía un estricto tope para la retención de las cuotas solidarias —aquel descuento pactado en las convenciones colectivas que alcanza tanto a trabajadores afiliados como no afiliados— y disponía de manera tajante que dicho porcentaje debía calcularse exclusivamente sobre el salario básico de cada categoría.
-
-Para la conducción de la Confederación General del Trabajo (CGT), la medida distaba de ser un mero ajuste técnico en la liquidación de los recibos de sueldo; representaba un embate directo contra la línea de flotación de su financiamiento. En el esquema salarial argentino, el haber básico constituye habitualmente solo una porción del ingreso total, el cual se complementa mes a mes con adicionales por antigüedad, presentismo, sumas fijas y diversos complementos convencionales. Reducir la base imponible únicamente al básico equivalía a podar de forma drástica los ingresos que sostienen la logística, las estructuras asistenciales y el funcionamiento institucional de las organizaciones gremiales.
-
-Lejos de adoptar una postura pasiva, la central obrera desplegó una estrategia de fuerte presión coordinada en dos frentes simultáneos. Mientras sus equipos jurídicos alistaban una batería de recursos cautelares para trabar la aplicación de la norma en el fuero laboral, los referentes del bloque dialógico —encabezados por dirigentes como Gerardo Martínez— abrieron un canal de negociación directa con el ministro de Trabajo, Diego Santilli, y la ministra de Capital Humano, Sandra Pettovello. El mensaje que transmitió la cúpula sindical a la Casa Rosada fue contundente: asfixiar económicamente a los gremios cruzaba un límite que clausuraba cualquier instancia de entendimiento y abría las puertas a un escenario de alta conflictividad social.
-.</p>
-                    <p>Ante la firmeza del reclamo sindical y con el objetivo de evitar un empantanamiento judicial que terminara paralizando la implementación general de la reforma, el Presidente y sus ministros terminaron cediendo y firmaron el Decreto 612/2026, publicado este lunes en el Boletín Oficial. La nueva disposición modificó el criterio oficial y aceptó el reclamo gremial al establecer que las contribuciones y aportes convencionales se calcularán sumando al básico todas las sumas remunerativas normales, habituales y de percepción mensual que integren el haber del trabajador. Como contrapartida, para resguardar cierto equilibrio, el Ejecutivo dejó expresamente excluidos de la base de cálculo a los conceptos extraordinarios u ocasionales, tales como el sueldo anual complementario (aguinaldo), las horas extras, los bonos, la participación en las ganancias y el plus vacacional.
-
-
-
-El desenlace de esta negociación reordena de manera profunda el mapa de poder entre el Estado y el sindicalismo, exponiendo dinámicas políticas que trascienden la mera técnica regulatoria. En primer lugar, la corrección del texto evidencia la vigencia de la capacidad de veto que conserva la CGT sobre las decisiones del Poder Ejecutivo. Aun en un contexto signado por reformas estructurales de amplio alcance, la central obrera demostró que conserva la fuerza institucional necesaria para doblegar la postura intransigente que imperaba en el ala más dura del Gabinete. Esta marcha atrás oficial refleja además las crecientes tensiones internas dentro del propio oficialismo, donde la intransigencia teórica impulsada por las áreas de desregulación debió subordinarse al pragmatismo de la conducción política del Gobierno, que prefirió concesiones puntuales antes que arriesgar una escalada de conflictividad en la antesala del ciclo electoral.
-
-Al mismo tiempo, el acuerdo consolida la posición interna del sector dialógico de Azopardo. La resolución del conflicto legitima la estrategia de los dirigentes que apostaron a la negociación de pasillo y a la presión institucional por sobre el choque frontal en las calles, demostrando ante sus propias bases que la diplomacia sindical sigue obteniendo dividendos tangibles frente al poder de turno. Sin embargo, esta victoria corporativa deja al descubierto una marcada asimetría en el terreno social: al restablecerse una base salarial más amplia que incluye todos los adicionales habituales, los trabajadores no afiliados volverán a absorber en sus recibos de sueldo una retención mayor destinada a financiar las estructuras gremiales, trasladando el costo efectivo del entendimiento directamente sobre la masa salarial de quienes optaron por no afiliarse.
-.</p>
-                    <p>.</p>
+                    <p>La tensión en los pasillos del poder político y sindical había tocado su punto más alto a fines de mayo de 2026, inmediatamente después de que el Congreso de la Nación aprobara la Ley N° 27.802 de Modernización Laboral. Cuando el Poder Ejecutivo avanzó en la reglamentación inicial mediante el Decreto 407/2026, el Ministerio de Desregulación introdujo una cláusula que encendió todas las alarmas en el histórico edificio de la calle Azopardo. La norma establecía un estricto tope para la retención de las cuotas solidarias —aquel descuento pactado en las convenciones colectivas que alcanza tanto a trabajadores afiliados como no afiliados— y disponía de manera tajante que dicho porcentaje debía calcularse exclusivamente sobre el salario básico de cada categoría.</p>
+                    <p>Para la conducción de la Confederación General del Trabajo (CGT), la medida distaba de ser un mero ajuste técnico en la liquidación de los recibos de sueldo; representaba un embate directo contra la línea de flotación de su financiamiento. En el esquema salarial argentino, el haber básico constituye habitualmente solo una porción del ingreso total, el cual se complementa mes a mes con adicionales por antigüedad, presentismo, sumas fijas y diversos complementos convencionales. Reducir la base imponible únicamente al básico equivalía a podar de forma drástica los ingresos que sostienen la logística, las estructuras asistenciales y el funcionamiento institucional de las organizaciones gremiales.</p>
+                    <p>Lejos de adoptar una postura pasiva, la central obrera desplegó una estrategia de fuerte presión coordinada en dos frentes simultáneos. Mientras sus equipos jurídicos alistaban una batería de recursos cautelares para trabar la aplicación de la norma en el fuero laboral, los referentes del bloque dialógico —encabezados por dirigentes como Gerardo Martínez— abrieron un canal de negociación directa con el ministro de Trabajo, Diego Santilli, y la ministra de Capital Humano, Sandra Pettovello. El mensaje que transmitió la cúpula sindical a la Casa Rosada fue contundente: asfixiar económicamente a los gremios cruzaba un límite que clausuraba cualquier instancia de entendimiento y abría las puertas a un escenario de alta conflictividad social.</p>
+                    <p>Ante la firmeza del reclamo sindical y con el objetivo de evitar un empantanamiento judicial que terminara paralizando la implementación general de la reforma, el Presidente y sus ministros terminaron cediendo y firmaron el Decreto 612/2026, publicado este lunes en el Boletín Oficial. La nueva disposición modificó el criterio oficial y aceptó el reclamo gremial al establecer que las contribuciones y aportes convencionales se calcularán sumando al básico todas las sumas remunerativas normales, habituales y de percepción mensual que integren el haber del trabajador. Como contrapartida, para resguardar cierto equilibrio, el Ejecutivo dejó expresamente excluidos de la base de cálculo a los conceptos extraordinarios u ocasionales, tales como el sueldo anual complementario (aguinaldo), las horas extras, los bonos, la participación en las ganancias y el plus vacacional.</p>
+                    <p>El desenlace de esta negociación reordena de manera profunda el mapa de poder entre el Estado y el sindicalismo, exponiendo dinámicas políticas que trascienden la mera técnica regulatoria. En primer lugar, la corrección del texto evidencia la vigencia de la capacidad de veto que conserva la CGT sobre las decisiones del Poder Ejecutivo. Aun en un contexto signado por reformas estructurales de amplio alcance, la central obrera demonstrated que conserva la fuerza institucional necesaria para doblegar la postura intransigente que imperaba en el ala más dura del Gabinete. Esta marcha atrás oficial refleja además las crecientes tensiones internas dentro del propio oficialismo, donde la intransigencia teórica impulsada por las áreas de desregulación debió subordinarse al pragmatismo de la conducción política del Gobierno, que prefirió concesiones puntuales antes que arriesgar una escalada de conflictividad en la antesala del ciclo electoral.</p>
+                    <p>Al mismo tiempo, el acuerdo consolida la posición interna del sector dialógico de Azopardo. La resolución del conflicto legitima la estrategia de los dirigentes que apostaron a la negociación de pasillo y a la presión institucional por sobre el choque frontal en las calles, demostrando ante sus propias bases que la diplomacia sindical sigue obteniendo dividendos tangibles frente al poder de turno. Sin embargo, esta victoria corporativa deja al descubierto una marcada asimetría en el terreno social: al restablecerse una base salarial más amplia que incluye todos los adicionales habituales, los trabajadores no afiliados volverán a absorber en sus recibos de sueldo una retención mayor destinada a financiar las estructuras gremiales, trasladando el costo efectivo del entendimiento directamente sobre la masa salarial de quienes optaron por no afiliarse.</p>
                 `
             },
             'nota2': {
@@ -745,12 +726,10 @@ Al mismo tiempo, el acuerdo consolida la posición interna del sector dialógico
             }
         };
 
-        // Función para abrir la nota desarrollada
         function openArticle(articleId) {
             const data = articlesData[articleId];
             if (!data) return;
 
-            // Inyectamos la información en el contenedor de artículo
             const badgeEl = document.getElementById('article-badge');
             badgeEl.innerText = data.badge;
             badgeEl.className = `framed-badge ${data.badgeColor === 'red' ? 'red' : ''}`;
@@ -761,15 +740,12 @@ Al mismo tiempo, el acuerdo consolida la posición interna del sector dialógico
             document.getElementById('article-caption').innerText = data.caption;
             document.getElementById('article-body').innerHTML = data.body;
 
-            // Ocultamos la portada y mostramos el artículo
             document.getElementById('frontpage-view').style.display = 'none';
             document.getElementById('article-view').style.display = 'block';
 
-            // Desplazamos la pantalla arriba
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Función para volver a la portada
         function showFrontpage() {
             document.getElementById('article-view').style.display = 'none';
             document.getElementById('frontpage-view').style.display = 'block';
