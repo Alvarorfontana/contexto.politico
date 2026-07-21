@@ -2,3 +2,17 @@ backend:
   name: github
   repo: Alvarorfontana/contexto.politico
   branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Cuerpo de la nota", name: "body", widget: "markdown" }
