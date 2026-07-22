@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: Alvarorfontana/contexto.politico
+  name: git-gateway
   branch: main
-  auth_type: pkce # Usa autenticación segura directa de GitHub sin servidores externos
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
