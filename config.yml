@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: TU_USUARIO/TU_REPOSITORIO # Ejemplo: Alvarorfontana/contexto.politico
+  branch: main
+  base_url: https://decap-oauth-master.vercel.app # Servidor OAuth gratuito para Decap
+  auth_endpoint: /api/auth
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "content/noticias"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "ID de la nota", name: "id", widget: "string" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Subtítulo / Bajada", name: "subtitle", widget: "text", required: false }
+      - { label: "Categoría", name: "category", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Imagen (URL)", name: "img", widget: "string", required: false }
+      - { label: "Pie de foto", name: "caption", widget: "string", required: false }
+      - { label: "Cuerpo de la nota", name: "body", widget: "markdown" }
