@@ -87,9 +87,10 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE CARGA MEJORADO -->
+    <!-- SCRIPT DE CARGA COMPATIBLE CON VERCEL Y GITHUB -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Lee tanto ?file= como ?id= de la URL
             const params = new URLSearchParams(window.location.search);
             const fileName = params.get('file') || params.get('id');
 
@@ -99,13 +100,13 @@
                 return;
             }
 
-            // Ruta relativa explicita para evitar problemas de dominio
-            const jsonUrl = `./content/noticias/${fileName}.json`;
+            // Ruta absoluta desde la raíz para Vercel
+            const jsonUrl = `/content/noticias/${fileName}.json`;
 
             fetch(jsonUrl)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`No se encontró el archivo en la ruta: ${jsonUrl} (Código de error HTTP: ${response.status})`);
+                        throw new Error(`No se encontró el archivo JSON en: ${jsonUrl} (Status HTTP: ${response.status})`);
                     }
                     return response.json();
                 })
@@ -131,13 +132,12 @@
                     console.error(err);
                     document.getElementById('title-field').innerText = "Error al cargar la nota";
                     document.getElementById('body-field').innerHTML = `
-                        <p><strong>Detalle del error:</strong> ${err.message}</p>
+                        <p><strong>Detalle técnico:</strong> ${err.message}</p>
                         <hr style="margin: 15px 0; border: none; border-top: 1px solid #ccc;">
-                        <p><strong>Verificaciones recomendadas:</strong></p>
+                        <p><strong>Checklist de verificación en Vercel/GitHub:</strong></p>
                         <ul style="margin-left: 20px; line-height: 1.8;">
-                            <li>Asegúrate de que la carpeta en GitHub se llame <code>content</code> (todo en minúsculas).</li>
-                            <li>Asegúrate de que la subcarpeta se llame <code>noticias</code> (todo en minúsculas).</li>
-                            <li>Revisa que el archivo <code>${fileName}.json</code> exista dentro de <code>content/noticias/</code>.</li>
+                            <li>Confirma que en el repositorio la carpeta sea <code>content/noticias/</code> (todo en minúsculas).</li>
+                            <li>Confirma que el archivo se llame exactamente <code>${fileName}.json</code>.</li>
                         </ul>
                     `;
                 });
