@@ -6,11 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Control - Contexto Político</title>
 
-  <!-- Vincula el archivo de configuración config.yml -->
-  <link href="config.yml" type="text/yaml" rel="cms-config-url" />
+  <!-- Script oficial de Netlify Identity para gestionar el login -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Carga la librería JS oficial de Decap CMS desde CDN -->
+  <!-- Script principal de Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Script para recargar automáticamente la página al iniciar sesión exitosamente -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.reload();
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
