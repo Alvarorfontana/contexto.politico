@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Alvarorfontana/contexto.politico
   branch: main
-  base_url: https://decap-cms-oauth-provider.vercel.app
+  base_url: https://decap-bridge.vercel.app
   auth_endpoint: /api/auth
 
 # Permite ver la vista previa de las imágenes guardadas
