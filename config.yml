@@ -2,10 +2,8 @@ backend:
   name: github
   repo: Alvarorfontana/contexto.politico
   branch: main
-  base_url: https://decap-bridge.vercel.app
-  auth_endpoint: /api/auth
+  auth_type: pkce # Usa autenticación segura directa de GitHub sin servidores externos
 
-# Permite ver la vista previa de las imágenes guardadas
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
