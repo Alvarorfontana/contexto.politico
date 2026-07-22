@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargando... | Contexto Político</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --guardian-navy: #052962;
+            --guardian-blue: #005689;
+            --guardian-accent: #00b2ff;
+            --guardian-yellow: #ffe500;
+            --guardian-red: #c70000;
+            --guardian-dark: #121212;
+            --guardian-bg: #f6f6f6;
+            --guardian-line: #dcdcdc;
+            --blanco: #ffffff;
+            --fuente-titulo: 'Merriweather', Georgia, serif;
+            --fuente-sans: 'Public Sans', -apple-system, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--fuente-sans); background-color: var(--guardian-bg); color: var(--guardian-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        
+        .container { max-width: 850px; margin: 0 auto; padding: 0 15px; }
+
+        header { background-color: var(--guardian-navy); color: var(--blanco); border-bottom: 3px solid var(--guardian-yellow); padding: 20px 0; }
+        .site-title { font-family: var(--fuente-titulo); font-size: 2.4rem; font-weight: 900; color: var(--blanco); text-align: center; }
+        .site-title span { color: var(--guardian-accent); }
+
+        main { background-color: var(--blanco); padding: 40px 25px; margin-top: 20px; border: 1px solid var(--guardian-line); }
+
+        .article-category { color: var(--guardian-red); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; }
+        .article-headline { font-family: var(--fuente-titulo); font-size: 2.3rem; font-weight: 900; line-height: 1.2; color: var(--guardian-navy); margin-bottom: 15px; }
+        .article-subheadline { font-size: 1.15rem; color: #444; font-weight: 400; line-height: 1.4; margin-bottom: 25px; border-bottom: 1px solid var(--guardian-line); padding-bottom: 20px; }
+        
+        .article-meta { font-size: 0.85rem; color: #666; margin-bottom: 25px; }
+
+        .main-image-container { margin-bottom: 30px; }
+        .main-image-container img { width: 100%; height: auto; display: block; }
+        .main-image-container figcaption { font-size: 0.85rem; color: #555; padding-top: 8px; border-top: 2px solid var(--guardian-blue); margin-top: 8px; }
+
+        .article-body { font-family: var(--fuente-titulo); font-size: 1.1rem; color: #222; line-height: 1.8; }
+        .article-body p { margin-bottom: 20px; }
+
+        footer { background-color: var(--guardian-navy); color: var(--blanco); padding: 30px 0; margin-top: 40px; text-align: center; font-size: 0.85rem; border-top: 4px solid var(--guardian-yellow); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="/"><h1 class="site-title">Contexto <span>Político</span></h1></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="article-category" id="cat-field">Cargando...</div>
+            <h1 class="article-headline" id="title-field">Cargando noticia...</h1>
+            <p class="article-subheadline" id="subtitle-field"></p>
+
+            <div class="article-meta">
+                <span>Publicado el: <strong id="date-field">--/--/----</strong></span>
+            </div>
+
+            <figure class="main-image-container" id="img-container" style="display:none;">
+                <img id="img-field" src="" alt="Imagen del artículo">
+                <figcaption id="caption-field"></figcaption>
+            </figure>
+
+            <div class="article-body" id="body-field">
+                <p>Cargando el texto completo del artículo...</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2026 Contexto Político — Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const fileName = params.get('file') || params.get('id');
+
+            if (!fileName) {
+                document.getElementById('title-field').innerText = "Artículo no encontrado";
+                document.getElementById('body-field').innerHTML = "<p>No se especificó ninguna noticia para cargar.</p>";
+                return;
+            }
+
+            const jsonUrl = `/content/noticias/${fileName}.json`;
+
+            fetch(jsonUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("No se encontró la nota");
+                    return response.json();
+                })
+                .then(data => {
+                    document.title = `${data.title} | Contexto Político`;
+                    document.getElementById('cat-field').innerText = data.category || 'Noticias';
+                    document.getElementById('title-field').innerText = data.title;
+                    document.getElementById('subtitle-field').innerText = data.subtitle || '';
+                    document.getElementById('date-field').innerText = data.date || 'Reciente';
+
+                    if (data.img) {
+                        document.getElementById('img-field').src = data.img;
+                        document.getElementById('caption-field').innerText = data.caption || '';
+                        document.getElementById('img-container').style.display = 'block';
+                    }
+
+                    if (data.body) {
+                        const formattedBody = data.body.split('\n\n').map(p => `<p>${p}</p>`).join('');
+                        document.getElementById('body-field').innerHTML = formattedBody;
+                    }
+                })
+                .catch(err => {
+                    document.getElementById('title-field').innerText = "Error al cargar la nota";
+                    document.getElementById('body-field').innerHTML = "<p>Verifica que el archivo JSON exista dentro de /content/noticias/.</p>";
+                });
+        });
+    </script>
+</body>
+</html>
