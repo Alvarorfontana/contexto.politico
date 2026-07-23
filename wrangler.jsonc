@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "contextopolitico2026",
+  "compatibility_date": "2026-07-23",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "content"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
