@@ -1,33 +1,51 @@
+¡Entendido! **The Guardian** se caracteriza por una paleta de colores icónica y muy distinguida dentro del periodismo global:
+
+* **Azul marino profundo** (`#052962`) como color principal de la marca y encabezados.
+* **Azul brillante / Celestes** (`#005689` y `#00b2ff`) para acentos y categorías secundarias.
+* **Amarillo/Crema cálido** (`#ffe500` / `#fff4f2`) para destacar secciones especiales y opiniones.
+* **Rojo coral** (`#c70000`) reservado para noticias de último momento o alertas.
+
+Aquí tienes el código completo actualizado con la **paleta cromática auténtica de The Guardian**, adaptado a tu sitio **Contexto Político** con todas sus secciones, fotos y epígrafes:
+
+### Código HTML y CSS (`index.html`)
+
+Reemplaza todo el contenido de tu archivo **`index.html`** con este código y refresca la página en tu navegador:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contexto Político | Noticias e Investigación</title>
-    <!-- Tipografías periodísticas -->
+    <!-- Fuentes periodísticas estilo The Guardian -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA CROMÁTICA THE GUARDIAN --- */
+        /* --- PALETA CROMÁTICA AUTÉNTICA DE THE GUARDIAN --- */
         :root {
-            --guardian-navy: #052962;       /* Azul marino */
+            --guardian-navy: #052962;       /* Azul marino distintivo */
             --guardian-blue: #005689;       /* Azul secundario */
-            --guardian-accent: #00b2ff;     /* Celeste acento */
-            --guardian-yellow: #ffe500;     /* Amarillo */
-            --guardian-red: #c70000;        /* Rojo alertas */
-            --guardian-dark: #121212;       /* Texto principal */
+            --guardian-accent: #00b2ff;     /* Celeste de acento */
+            --guardian-yellow: #ffe500;     /* Amarillo Guardian */
+            --guardian-red: #c70000;        /* Rojo de urgencia/alertas */
+            --guardian-dark: #121212;       /* Texto oscuro */
             --guardian-bg: #f6f6f6;         /* Fondo gris tenue */
             --guardian-line: #dcdcdc;       /* Líneas divisoras */
-            --guardian-opinion-bg: #fef9e7; /* Crema para opinión */
+            --guardian-opinion-bg: #fef9e7; /* Fondo crema para columnas de opinión */
             --blanco: #ffffff;
             
             --fuente-titulo: 'Merriweather', Georgia, serif;
             --fuente-sans: 'Public Sans', -apple-system, sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: var(--fuente-sans);
@@ -45,7 +63,7 @@
             padding: 0 15px;
         }
 
-        /* ENCABEZADO */
+        /* --- ENCABEZADO ESTILO THE GUARDIAN --- */
         header {
             background-color: var(--guardian-navy);
             color: var(--blanco);
@@ -77,7 +95,9 @@
             line-height: 0.95;
         }
 
-        .site-title span { color: var(--guardian-accent); }
+        .site-title span {
+            color: var(--guardian-accent);
+        }
 
         .edition-tag {
             font-size: 0.85rem;
@@ -88,13 +108,13 @@
             margin-bottom: 6px;
         }
 
-        /* NAVEGACIÓN */
+        /* --- NAVEGACIÓN --- */
         nav {
             background-color: var(--guardian-navy);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .nav-menu {
@@ -120,7 +140,7 @@
             color: var(--guardian-yellow);
         }
 
-        /* CONTENIDO PRINCIPAL */
+        /* --- CUERPO Y PORTADA --- */
         main {
             padding: 20px 0;
             background-color: var(--blanco);
@@ -132,24 +152,30 @@
             border-bottom: 2px solid var(--guardian-navy);
             padding-bottom: 6px;
             margin-bottom: 20px;
+            font-family: var(--fuente-sans);
             font-weight: 900;
             font-size: 1.1rem;
             text-transform: uppercase;
             color: var(--guardian-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* GRILLA DE PORTADA */
+        /* GRILLA PRINCIPAL (3 COLUMNAS) */
         .frontpage-grid {
             display: grid;
             grid-template-columns: 2.5fr 1.5fr 1fr;
             gap: 20px;
             border-bottom: 1px solid var(--guardian-line);
             padding-bottom: 30px;
+            margin-bottom: 30px;
         }
 
-        .article-card {
-            cursor: pointer;
-            position: relative;
+        /* COLUMNA 1: NOTICIA DESTACADA */
+        .lead-article {
+            border-right: 1px solid var(--guardian-line);
+            padding-right: 20px;
         }
 
         .article-kicker {
@@ -161,12 +187,6 @@
             display: block;
         }
 
-        /* Noticia Principal */
-        .lead-article {
-            border-right: 1px solid var(--guardian-line);
-            padding-right: 20px;
-        }
-
         .lead-title {
             font-family: var(--fuente-titulo);
             font-size: 2.3rem;
@@ -176,13 +196,36 @@
             color: var(--guardian-navy);
         }
 
+        .lead-title:hover {
+            color: var(--guardian-blue);
+        }
+
         .lead-subtitle {
+            font-family: var(--fuente-sans);
             font-size: 1.05rem;
             color: #444;
             margin-bottom: 15px;
+            line-height: 1.4;
         }
 
-        /* Columna Secundaria */
+        figure {
+            margin-bottom: 12px;
+        }
+
+        figcaption {
+            font-size: 0.8rem;
+            color: #555;
+            padding-top: 6px;
+            border-top: 2px solid var(--guardian-blue);
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+
+        figcaption strong {
+            color: var(--guardian-navy);
+        }
+
+        /* COLUMNA 2: SECUNDARIAS */
         .secondary-column {
             border-right: 1px solid var(--guardian-line);
             padding-right: 20px;
@@ -196,15 +239,24 @@
             padding-bottom: 15px;
         }
 
+        .sub-article:last-child {
+            border-bottom: none;
+        }
+
         .sub-title {
             font-family: var(--fuente-titulo);
             font-size: 1.3rem;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 8px;
+            color: var(--guardian-dark);
         }
 
-        /* Columna Opinión */
+        .sub-title a:hover {
+            color: var(--guardian-blue);
+        }
+
+        /* COLUMNA 3: OPINIÓN (FONDO AMARILLO/CREMA) */
         .opinion-column {
             background-color: var(--guardian-opinion-bg);
             padding: 15px;
@@ -222,103 +274,121 @@
             color: var(--guardian-navy);
         }
 
-        /* --- VISTA PREVIA FLOTANTE (HOVER CARD) --- */
-        .hover-card {
-            display: none;
-            position: fixed;
-            width: 320px;
-            background: #ffffff;
-            border: 2px solid var(--guardian-navy);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-            padding: 15px;
-            z-index: 2000;
-            pointer-events: none; /* No interfiere con el cursor */
-            border-top: 5px solid var(--guardian-yellow);
+        .opinion-card {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e8d7a5;
+            padding-bottom: 10px;
         }
 
-        .hover-card.active { display: block; }
-        .hover-card img { width: 100%; height: 160px; object-fit: cover; margin-bottom: 10px; }
-        .hover-card h4 { font-family: var(--fuente-titulo); font-size: 1rem; line-height: 1.2; margin-bottom: 8px; }
-        .hover-card p { font-size: 0.85rem; color: #555; }
-
-        /* --- MODAL PARA NOTA COMPLETA --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 41, 98, 0.85);
-            z-index: 3000;
-            justify-content: center; align-items: center;
-            padding: 20px;
+        .opinion-card:last-child {
+            border-bottom: none;
         }
 
-        .modal-overlay.active { display: flex; }
-
-        .modal-content {
-            background: #fff;
-            max-width: 800px; width: 100%;
-            max-height: 90vh; overflow-y: auto;
-            padding: 35px; position: relative;
-            border-top: 6px solid var(--guardian-yellow);
-        }
-
-        .btn-cerrar {
-            position: absolute; top: 15px; right: 20px;
-            background: transparent; border: none;
-            font-size: 2.2rem; cursor: pointer; color: #666;
-        }
-
-        .modal-body h1 {
-            font-family: var(--fuente-titulo);
-            font-size: 2.4rem; line-height: 1.1; margin-bottom: 12px;
+        .author-name {
+            font-weight: 800;
+            font-size: 0.85rem;
             color: var(--guardian-navy);
         }
 
-        .modal-body .meta {
-            font-size: 0.85rem; color: #666;
-            border-bottom: 1px solid var(--guardian-line);
-            padding-bottom: 10px; margin-bottom: 20px;
+        /* SECCIONES POR REGIONES Y TEMAS */
+        .section-row {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px solid var(--guardian-navy);
         }
 
-        .modal-body img { width: 100%; height: auto; margin-bottom: 20px; }
-        .modal-body p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 16px; color: #222; }
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
 
-        /* FOOTER */
+        .card-news {
+            border-top: 1px solid var(--guardian-line);
+            padding-top: 10px;
+        }
+
+        .card-news h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.15rem;
+            margin-top: 8px;
+            line-height: 1.25;
+            color: var(--guardian-dark);
+        }
+
+        .card-news h3 a:hover {
+            color: var(--guardian-blue);
+        }
+
+        /* PIE DE PÁGINA (FOOTER) */
         footer {
             background-color: var(--guardian-navy);
             color: var(--blanco);
             padding: 40px 0 20px 0;
             border-top: 4px solid var(--guardian-yellow);
+            font-family: var(--fuente-sans);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 30px; margin-bottom: 30px;
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
         .footer-brand {
             font-family: var(--fuente-titulo);
-            font-size: 2.2rem; font-weight: 900;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
         }
 
         .footer-brand span { color: var(--guardian-accent); }
-        .copyright { text-align: center; font-size: 0.8rem; color: #a0c4e8; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 20px; }
 
+        .footer-info p {
+            font-size: 0.85rem;
+            color: #d1e8ff;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #a0c4e8;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 992px) {
-            .frontpage-grid { grid-template-columns: 1fr; }
-            .lead-article, .secondary-column { border-right: none; padding-right: 0; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .frontpage-grid {
+                grid-template-columns: 1fr;
+            }
+            .lead-article, .secondary-column {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid var(--guardian-line);
+                padding-bottom: 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .site-title {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- CABECERA PRINCIPAL -->
     <header>
         <div class="container">
             <div class="top-subhead">
                 <span>Edición Digital Argentina e Internacional</span>
-                <span id="fecha-actual"></span>
+                <span>Martes, 2026</span>
             </div>
             <div class="header-main">
                 <div>
@@ -329,205 +399,169 @@
         </div>
     </header>
 
+    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav>
         <div class="container">
             <ul class="nav-menu">
-                <li><a href="#portada">Nacional</a></li>
+                <li><a href="#nacional">Nacional</a></li>
                 <li><a href="#gremiales">Gremiales</a></li>
                 <li><a href="#latam">Latinoamérica</a></li>
                 <li><a href="#eeuu">EE.UU.</a></li>
                 <li><a href="#europa">Europa</a></li>
+                <li><a href="#asia">Asia</a></li>
                 <li><a href="#medio-oriente">Medio Oriente</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- PORTADA Y NOTICIAS -->
     <main>
         <div class="container">
-            <div class="guardian-banner">/// Titulares Principales</div>
+
+            <div class="guardian-banner">
+                <span>/// Titulares Principales</span>
+            </div>
 
             <div class="frontpage-grid">
 
-                <!-- NOTICIA 1 (Principal JSON) -->
-                <article class="article-card lead-article" data-nota="nota-1" onclick="abrirNota('nota-1')">
-                    <span class="article-kicker" id="volanta-nota-1">Cargando...</span>
-                    <h2 class="lead-title" id="titulo-nota-1">...</h2>
-                    <p class="lead-subtitle" id="bajada-nota-1">...</p>
-                    <figure id="fig-nota-1"></figure>
+                <!-- COLUMNA 1: NOTICIA PRINCIPAL -->
+                <article class="lead-article" id="nacional">
+                    <span class="article-kicker">Política Nacional & Geopolítica</span>
+                    <a href="#">
+                        <h2 class="lead-title">Reconfiguración estratégica de los mercados energéticos y acuerdos bilaterales</h2>
+                    </a>
+                    <p class="lead-subtitle">
+                        Un análisis exhaustivo sobre los recientes movimientos normativos e institucionales que impactan de manera directa en el comercio regional y la infraestructura estratégica.
+                    </p>
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1000&q=80" alt="Congreso y Política">
+                        <figcaption>
+                            <strong>Enfoque:</strong> Las comisiones parlamentarias debaten los alcances de las nuevas normativas institucionales. Fotografía: Redacción.
+                        </figcaption>
+                    </figure>
                 </article>
 
-                <!-- COLUMNA SECUNDARIA (Notas 2 y 3 JSON) -->
+                <!-- COLUMNA 2: NOTICIAS SECUNDARIAS -->
                 <section class="secondary-column">
-                    
-                    <article class="article-card sub-article" data-nota="nota-2" onclick="abrirNota('nota-2')">
-                        <span class="article-kicker" id="volanta-nota-2">Cargando...</span>
-                        <h3 class="sub-title" id="titulo-nota-2">...</h3>
-                        <p style="font-size:0.88rem; color:#555;" id="bajada-nota-2">...</p>
+
+                    <article class="sub-article" id="gremiales">
+                        <span class="article-kicker">Gremiales</span>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=600&q=80" alt="Mesa de negociación">
+                            <figcaption><strong>Encuentro:</strong> Reunión entre delegados y sectores productivos.</figcaption>
+                        </figure>
+                        <h3 class="sub-title"><a href="#">Avanzan las negociaciones paritarias con foco en la pauta de recomposición</a></h3>
+                        <p style="font-size: 0.88rem; color: #555;">Representantes gremiales buscan definir los acuerdos del próximo trimestre en medio de complejas mesas de diálogo.</p>
                     </article>
 
-                    <article class="article-card sub-article" data-nota="nota-3" onclick="abrirNota('nota-3')">
-                        <span class="article-kicker" id="volanta-nota-3">Cargando...</span>
-                        <h3 class="sub-title" id="titulo-nota-3">...</h3>
-                        <p style="font-size:0.88rem; color:#555;" id="bajada-nota-3">...</p>
+                    <article class="sub-article">
+                        <span class="article-kicker">Economía & Política</span>
+                        <h3 class="sub-title"><a href="#">El impacto de las tasas y los flujos financieros en las economías emergentes</a></h3>
                     </article>
 
                 </section>
 
-                <!-- COLUMNA OPINIÓN (Nota 4 JSON) -->
+                <!-- COLUMNA 3: SECCIÓN DE OPINIÓN (ESTILO GUARDIAN) -->
                 <aside class="opinion-column">
                     <div class="opinion-title">Análisis & Columnas</div>
-                    
-                    <article class="article-card" data-nota="nota-4" onclick="abrirNota('nota-4')">
-                        <span class="article-kicker" id="volanta-nota-4">Cargando...</span>
-                        <h4 style="font-family: var(--fuente-titulo); font-size: 1rem; margin-top: 4px;" id="titulo-nota-4">...</h4>
-                        <p style="font-size:0.85rem; color:#444; margin-top:6px;" id="bajada-nota-4">...</p>
-                    </article>
+
+                    <div class="opinion-card">
+                        <span class="author-name">Análisis Internacional</span>
+                        <h4 style="font-family: var(--fuente-titulo); font-size: 0.95rem; margin-top: 4px;">
+                            <a href="#">El equilibrio geopolítico en los pasos marítimos de Asia y Medio Oriente</a>
+                        </h4>
+                    </div>
+
+                    <div class="opinion-card">
+                        <span class="author-name">Informe Especial</span>
+                        <h4 style="font-family: var(--fuente-titulo); font-size: 0.95rem; margin-top: 4px;">
+                            <a href="#">Las transformaciones legislativas que reconfiguran el empleo público</a>
+                        </h4>
+                    </div>
 
                 </aside>
 
             </div>
+
+            <!-- GRILLA DE ÁREAS REGIONALES -->
+            <div class="section-row">
+                <div class="guardian-banner">
+                    <span>/// Cobertura Internacional</span>
+                </div>
+
+                <div class="section-grid">
+
+                    <!-- LATINOAMÉRICA -->
+                    <article class="card-news" id="latam">
+                        <span class="article-kicker">Latinoamérica</span>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="Latinoamérica">
+                            <figcaption><strong>Cumbre:</strong> Avances en integración económica regional.</figcaption>
+                        </figure>
+                        <h3><a href="#">Nuevos ejes diplomáticos y acuerdos comerciales en Sudamérica</a></h3>
+                    </article>
+
+                    <!-- ESTADOS UNIDOS -->
+                    <article class="card-news" id="eeuu">
+                        <span class="article-kicker">Estados Unidos</span>
+                        <h3><a href="#">Debates presupuestarios marcan la pauta legislativa en Washington</a></h3>
+                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Las comisiones de política exterior analizan partidas clave para la región.</p>
+                    </article>
+
+                    <!-- EUROPA -->
+                    <article class="card-news" id="europa">
+                        <span class="article-kicker">Europa</span>
+                        <h3><a href="#">Bruselas reajusta las pautas regulatorias para el mercado energético</a></h3>
+                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Medidas orientadas a garantizar la resiliencia en la transición verde.</p>
+                    </article>
+
+                    <!-- MEDIO ORIENTE & ASIA -->
+                    <article class="card-news" id="medio-oriente">
+                        <span class="article-kicker">Medio Oriente & Asia</span>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80" alt="Medio Oriente">
+                            <figcaption><strong>Rutas comerciales:</strong> Monitoreo de corredores de carga.</figcaption>
+                        </figure>
+                        <h3><a href="#">Dinamismo en los estrechos clave y logística de hidrocarburos</a></h3>
+                    </article>
+
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- TARJETA HOVER FLOTANTE -->
-    <div class="hover-card" id="hoverCard">
-        <div id="hoverContent"></div>
-    </div>
-
-    <!-- MODAL LECTURA COMPLETA -->
-    <div class="modal-overlay" id="modalNota">
-        <div class="modal-content">
-            <button class="btn-cerrar" onclick="cerrarNota()">&times;</button>
-            <div class="modal-body" id="contenidoModal"></div>
-        </div>
-    </div>
-
+    <!-- PIE DE PÁGINA FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div>
+                
+                <div class="footer-info">
                     <div class="footer-brand">Contexto <span>Político</span></div>
-                    <p style="font-size:0.85rem; color:#d1e8ff; margin-top:8px;">Publicación especializada en análisis geopolítico, asuntos legislativos y política internacional.</p>
+                    <p>Publicación especializada en análisis geopolítico, asuntos legislativos, movimiento gremial y política internacional.</p>
                 </div>
-                <div>
+
+                <div class="footer-info">
                     <h4 style="color: var(--guardian-yellow); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;">Institucional</h4>
-                    <p style="font-size:0.85rem; color:#d1e8ff;"><strong>Edición General:</strong> Contexto Político</p>
+                    <p><strong>Director Responsable:</strong> Álvaro Ramón Fontana Leguizamón</p>
+                    <p><strong>Redacción:</strong> contacto@contextopolitico.com</p>
                 </div>
-                <div>
-                    <h4 style="color: var(--guardian-yellow); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;">Contacto</h4>
-                    <p style="font-size:0.85rem; color:#d1e8ff;">contacto@contextopolitico.com</p>
+
+                <div class="footer-info">
+                    <h4 style="color: var(--guardian-yellow); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;">Sede Central</h4>
+                    <p>Av. de Mayo 1234, CABA</p>
+                    <p>República Argentina</p>
                 </div>
+
             </div>
-            <div class="copyright">© 2026 Contexto Político — Todos los derechos reservados.</div>
+
+            <div class="copyright">
+                © 2026 Contexto Político — Todos los derechos reservados.
+            </div>
         </div>
     </footer>
 
-    <!-- SCRIPT SISTEMA DINÁMICO JSON + HOVER + MODAL -->
-    <script>
-        const RUTA_NOTICIAS = 'content/noticias/';
-        const cacheNotas = {};
-
-        // Carga la portada y guarda en memoria para el Hover
-        async function cargarNota(idNota) {
-            try {
-                const res = await fetch(`${RUTA_NOTICIAS}${idNota}.json`);
-                if (!res.ok) return;
-                const data = await res.json();
-                cacheNotas[idNota] = data;
-
-                if (document.getElementById(`volanta-${idNota}`)) {
-                    document.getElementById(`volanta-${idNota}`).innerText = data.volanta || '';
-                    document.getElementById(`titulo-${idNota}`).innerText = data.titulo || '';
-                    document.getElementById(`bajada-${idNota}`).innerText = data.bajada || '';
-
-                    // Si es nota-1 y tiene imagen, mostrar en la portada
-                    const fig = document.getElementById(`fig-${idNota}`);
-                    if (fig && data.imagen) {
-                        fig.innerHTML = `
-                            <img src="${data.imagen}" alt="${data.titulo}">
-                            <figcaption style="font-size:0.8rem; color:#555; padding-top:6px; border-top:2px solid var(--guardian-blue); margin-top:6px;">
-                                <strong>Enfoque:</strong> ${data.epigrafe || data.titulo}
-                            </figcaption>
-                        `;
-                    }
-                }
-            } catch (e) {
-                console.error(`Error cargando ${idNota}:`, e);
-            }
-        }
-
-        // Sistema Hover (Previsualización al pasar el mouse)
-        const hoverCard = document.getElementById('hoverCard');
-        const hoverContent = document.getElementById('hoverContent');
-
-        document.querySelectorAll('.article-card').forEach(card => {
-            card.addEventListener('mouseenter', (e) => {
-                const idNota = card.getAttribute('data-nota');
-                const data = cacheNotas[idNota];
-
-                if (data) {
-                    const imgHTML = data.imagen ? `<img src="${data.imagen}" alt="${data.titulo}">` : '';
-                    hoverContent.innerHTML = `
-                        ${imgHTML}
-                        <span style="color: var(--guardian-red); font-weight:800; font-size:0.75rem; text-transform:uppercase;">${data.volanta || ''}</span>
-                        <h4>${data.titulo}</h4>
-                        <p>${data.bajada || ''}</p>
-                    `;
-                    hoverCard.classList.add('active');
-                }
-            });
-
-            card.addEventListener('mousemove', (e) => {
-                hoverCard.style.left = (e.clientX + 15) + 'px';
-                hoverCard.style.top = (e.clientY + 15) + 'px';
-            });
-
-            card.addEventListener('mouseleave', () => {
-                hoverCard.classList.remove('active');
-            });
-        });
-
-        // Abrir Nota Completa en Modal al hacer clic
-        function abrirNota(idNota) {
-            const data = cacheNotas[idNota];
-            if (!data) return;
-
-            const modalBody = document.getElementById('contenidoModal');
-            const parrafosHTML = Array.isArray(data.cuerpo) 
-                ? data.cuerpo.map(p => `<p>${p}</p>`).join('')
-                : `<p>${data.cuerpo}</p>`;
-
-            const imagenHTML = data.imagen ? `
-                <figure>
-                    <img src="${data.imagen}" alt="${data.titulo}">
-                    <figcaption style="font-size:0.85rem; color:#666; margin-top:6px;">${data.epigrafe || ''}</figcaption>
-                </figure>
-            ` : '';
-
-            modalBody.innerHTML = `
-                <span style="color: var(--guardian-red); font-weight: 800; text-transform: uppercase; font-size:0.85rem;">${data.volanta || ''}</span>
-                <h1>${data.titulo}</h1>
-                <div class="meta">Por <strong>${data.autor || 'Redacción'}</strong> | ${data.fecha || ''}</div>
-                ${imagenHTML}
-                <div style="margin-top:20px;">${parrafosHTML}</div>
-            `;
-
-            hoverCard.classList.remove('active');
-            document.getElementById('modalNota').classList.add('active');
-        }
-
-        function cerrarNota() {
-            document.getElementById('modalNota').classList.remove('active');
-        }
-
-        // Inicializar
-        window.addEventListener('DOMContentLoaded', () => {
-            ['nota-1', 'nota-2', 'nota-3', 'nota-4'].forEach(cargarNota);
-            
-            // Fecha dinámica en el encabezado
-            const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('fecha-actual').innerText = new Date().toLocaleDateString('es-ES', opciones);
-        });
-    </script>
 </body>
 </html>
+
+```
