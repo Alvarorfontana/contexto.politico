@@ -6,22 +6,22 @@
   <title>Contexto Político - Diario Digital</title>
   <meta name="description" content="Análisis geopolítico, macroeconomía y política internacional.">
   
-  <!-- Open Graph / Redes Sociales -->
-  <meta property="og:title" content="Contexto Político">
-  <meta property="og:description" content="Análisis geopolítico y macroeconomía internacional.">
-  <meta property="og:type" content="website">
-
-  <!-- Estilos CSS Unificados -->
   <style>
     :root {
-      --primary: #121212;
-      --accent: #b30000;
-      --bg: #fbfbfb;
+      /* Colores inspirados en The Guardian */
+      --guardian-navy: #052962;       /* Azul marino de la cabecera */
+      --guardian-blue: #005689;       /* Azul primario */
+      --guardian-red: #c70000;        /* Noticias / Internacional */
+      --guardian-orange: #e6711b;     /* Opinión */
+      --guardian-sport: #00847e;      /* Deportes */
+      
+      --bg: #f6f6f6;
       --surface: #ffffff;
-      --text: #1a1a1a;
+      --text: #121212;
       --muted: #666666;
-      --border: #e2e2e2;
-      --font-serif: "Georgia", "Times New Roman", serif;
+      --border: #dcdcdc;
+      
+      --font-serif: "GH Guardian Headline", "Georgia", "Times New Roman", serif;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
@@ -35,7 +35,7 @@
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--font-sans);
-      line-height: 1.6;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -45,13 +45,18 @@
       padding: 0 1.25rem;
     }
 
-    /* Header e Identidad */
+    /* 1. Header estilo The Guardian (Azul Marino) */
     .site-header {
-      background: var(--surface);
-      border-bottom: 3px solid var(--primary);
-      padding: 2rem 0 1rem 0;
-      text-align: center;
-      margin-bottom: 2rem;
+      background: var(--guardian-navy);
+      color: #ffffff;
+      padding: 1.5rem 0 0 0;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 1rem;
     }
 
     .site-title {
@@ -59,374 +64,118 @@
       font-size: 2.8rem;
       font-weight: 900;
       letter-spacing: -1px;
-      text-transform: uppercase;
       cursor: pointer;
-      color: var(--primary);
+      color: #ffffff;
+      line-height: 1;
     }
 
     .site-tagline {
       font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--muted);
-      margin-top: 0.25rem;
+      letter-spacing: 1px;
+      color: #ffe500; /* Amarillo característico */
     }
 
-    /* Layout de Portada (Grilla) */
+    /* 2. Barra de Navegación con Solapas */
+    .nav-sections {
+      background: var(--guardian-navy);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+    }
+
+    .nav-item a {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-top: 4px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    /* Colores por solapa/sección */
+    .nav-item[data-sec="noticias"] a:hover,
+    .nav-item[data-sec="noticias"].active a { border-top-color: var(--guardian-red); background: rgba(255,255,255,0.05); }
+    
+    .nav-item[data-sec="opinion"] a:hover,
+    .nav-item[data-sec="opinion"].active a { border-top-color: var(--guardian-orange); background: rgba(255,255,255,0.05); }
+    
+    .nav-item[data-sec="deportes"] a:hover,
+    .nav-item[data-sec="deportes"].active a { border-top-color: var(--guardian-sport); background: rgba(255,255,255,0.05); }
+
+    .nav-item[data-sec="economia"] a:hover,
+    .nav-item[data-sec="economia"].active a { border-top-color: var(--guardian-blue); background: rgba(255,255,255,0.05); }
+
+    /* Layout Principal */
+    main {
+      padding-top: 2rem;
+    }
+
     .grid-portada {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     @media (max-width: 900px) {
-      .grid-portada {
-        grid-template-columns: 1fr;
-      }
+      .grid-portada { grid-template-columns: 1fr; }
     }
 
+    /* 3. Encabezados de Columna con Código de Color */
     .col-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 0.3rem;
+      font-size: 1.1rem;
+      font-family: var(--font-serif);
+      font-weight: 800;
+      border-top: 3px solid var(--guardian-navy);
+      padding-top: 0.4rem;
       margin-bottom: 1.2rem;
-      color: var(--primary);
+      color: var(--guardian-navy);
     }
+
+    .col-title.noticias-accent { border-top-color: var(--guardian-red); color: var(--guardian-red); }
+    .col-title.opinion-accent { border-top-color: var(--guardian-orange); color: var(--guardian-orange); }
 
     /* Tarjetas de Noticia */
     .card {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding-bottom: 1.5rem;
-      margin-bottom: 1.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
       cursor: pointer;
-      transition: opacity 0.2s ease;
+      transition: background-color 0.2s ease;
     }
 
     .card:hover {
-      opacity: 0.85;
+      background-color: #f0f0f0;
     }
 
     .tag {
-      color: var(--accent);
       font-weight: 700;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: block;
-      margin-bottom: 0.4rem;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+      color: var(--guardian-red);
     }
+
+    .opinion-story .tag { color: var(--guardian-orange); }
 
     .card h2 {
       font-family: var(--font-serif);
-      color: var(--primary);
+      color: var(--text);
       line-height: 1.2;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
-    .lead-story h2 { font-size: 2.1rem; }
-    .secundario-story h2 { font-size: 1.35rem; }
+    .lead-story h2 { font-size: 2rem; }
+    .secundario-story h2 { font-size: 1.3rem; }
     .opinion-story h2 { font-size: 1.2rem; font-style: italic; }
 
     .card img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 3px;
-      margin: 0.8rem 0;
-    }
-
-    .card .bajada {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
-    /* Visor de Artículo (SPA) */
-    .hidden {
-      display: none !important;
-    }
-
-    .articulo-view {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--surface);
-      padding: 2.5rem;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      margin-bottom: 4rem;
-    }
-
-    @media (max-width: 600px) {
-      .articulo-view { padding: 1.25rem; }
-    }
-
-    .btn-volver {
-      background: none;
-      border: none;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      padding: 0;
-      margin-bottom: 2rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-volver:hover {
-      text-decoration: underline;
-    }
-
-    #art-titulo {
-      font-family: var(--font-serif);
-      font-size: 2.6rem;
-      line-height: 1.15;
-      color: var(--primary);
-      margin: 0.5rem 0 1rem 0;
-    }
-
-    .art-bajada {
-      font-size: 1.25rem;
-      color: var(--muted);
-      line-height: 1.4;
-      margin-bottom: 1.5rem;
-    }
-
-    .art-meta {
-      font-size: 0.85rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0.75rem 0;
-      margin-bottom: 2rem;
-    }
-
-    .art-imagen-frame img {
-      width: 100%;
-      max-height: 450px;
-      object-fit: cover;
-      border-radius: 4px;
-      margin-bottom: 2rem;
-    }
-
-    .art-cuerpo p {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      line-height: 1.8;
-      color: #222222;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Cargar/Feedback */
-    .loading-spinner {
-      text-align: center;
-      padding: 3rem;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Encabezado -->
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title" id="btn-home">Contexto Político</h1>
-      <p class="site-tagline">Análisis Geopolítico & Macroeconomía</p>
-    </div>
-  </header>
-
-  <!-- Contenedor Principal -->
-  <main class="container">
-    
-    <!-- VISTA 1: PORTADA PRINCIPAL -->
-    <section id="vista-portada" class="grid-portada">
-      <div>
-        <div class="col-title">Principal</div>
-        <div id="col-principal"></div>
-      </div>
-      <div>
-        <div class="col-title">Actualidad</div>
-        <div id="col-secundarias"></div>
-      </div>
-      <div>
-        <div class="col-title">Análisis & Opinión</div>
-        <div id="col-opinion"></div>
-      </div>
-    </section>
-
-    <!-- VISTA 2: VISOR DE ARTÍCULO (Oculto por defecto) -->
-    <article id="vista-articulo" class="articulo-view hidden">
-      <button id="btn-volver" class="btn-volver">← Volver a la portada</button>
-      <header>
-        <span id="art-categoria" class="tag"></span>
-        <h1 id="art-titulo"></h1>
-        <p id="art-bajada" class="art-bajada"></p>
-        <div class="art-meta">
-          Por <strong id="art-autor"></strong> | <span id="art-fecha"></span>
-        </div>
-      </header>
-      <div id="art-imagen-frame" class="art-imagen-frame"></div>
-      <div id="art-cuerpo" class="art-cuerpo"></div>
-    </article>
-
-  </main>
-
-  <!-- Lógica JavaScript Unificada -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Nodos del DOM
-      const vistaPortada = document.getElementById('vista-portada');
-      const vistaArticulo = document.getElementById('vista-articulo');
-      const btnHome = document.getElementById('btn-home');
-      const btnVolver = document.getElementById('btn-volver');
-
-      // Caché en memoria para evitar peticiones repetidas
-      const cacheNotas = {};
-
-      // 1. Manejo Inicial de Ruta (Soporta links compartidos con #hash)
-      evaluarRutaActual();
-
-      // 2. Escuchadores de Navegación
-      btnHome.addEventListener('click', () => navegarA(null));
-      btnVolver.addEventListener('click', () => navegarA(null));
-
-      // Capturar botón "Atrás / Adelante" del navegador
-      window.addEventListener('popstate', () => {
-        evaluarRutaActual();
-      });
-
-      // Evalúa la URL actual para decidir si mostrar portada o una nota concreta
-      function evaluarRutaActual() {
-        const hash = window.location.hash.replace('#', '');
-        if (hash) {
-          cargarYMostrarArticulo(hash, false);
-        } else {
-          mostrarPortadaUI();
-          cargarPortada();
-        }
-      }
-
-      // Cambia la ruta mediante History API
-      function navegarA(idNota) {
-        if (idNota) {
-          history.pushState({ id: idNota }, '', `#${idNota}`);
-          cargarYMostrarArticulo(idNota, false);
-        } else {
-          history.pushState(null, '', window.location.pathname);
-          mostrarPortadaUI();
-        }
-      }
-
-      // Carga el manifiesto de la portada y renderiza sus bloques
-      async function cargarPortada() {
-        const colMain = document.getElementById('col-principal');
-        const colSec = document.getElementById('col-secundarias');
-        const colOp = document.getElementById('col-opinion');
-
-        // Mostrar indicador de carga si están vacíos
-        if (!colMain.children.length) {
-          colMain.innerHTML = '<div class="loading-spinner">Cargando portada...</div>';
-        }
-
-        try {
-          const res = await fetch('/content/noticias/manifest.json');
-          if (!res.ok) throw new Error('No se pudo cargar manifest.json');
-          const manifest = await res.json();
-
-          colMain.innerHTML = '';
-          colSec.innerHTML = '';
-          colOp.innerHTML = '';
-
-          for (const item of manifest.portada) {
-            const nota = await obtenerNota(item.id);
-            if (!nota) continue;
-
-            const card = crearTarjetaHTML(nota, item.posicion);
-
-            if (item.posicion === 'lead') colMain.appendChild(card);
-            else if (item.posicion === 'secundario') colSec.appendChild(card);
-            else if (item.posicion === 'opinion') colOp.appendChild(card);
-          }
-        } catch (err) {
-          console.error('Error al cargar la portada:', err);
-          colMain.innerHTML = '<p>Error al obtener el contenido de la portada.</p>';
-        }
-      }
-
-      // Obtiene el JSON de una nota usando la caché
-      async function obtenerNota(id) {
-        if (cacheNotas[id]) return cacheNotas[id];
-        try {
-          const res = await fetch(`/content/noticias/${id}.json`);
-          if (!res.ok) throw new Error(`Nota ${id} no encontrada`);
-          const data = await res.json();
-          cacheNotas[id] = data;
-          return data;
-        } catch (err) {
-          console.error(err);
-          return null;
-        }
-      }
-
-      // Construye el HTML de la tarjeta para la portada
-      function crearTarjetaHTML(nota, posicion) {
-        const card = document.createElement('article');
-        card.className = `card ${posicion}-story`;
-        
-        card.innerHTML = `
-          <span class="tag">${nota.categoria || 'Noticia'}</span>
-          <h2>${nota.titulo}</h2>
-          ${posicion === 'lead' && nota.imagen ? `<img src="${nota.imagen}" alt="${nota.titulo}" loading="lazy">` : ''}
-          <p class="bajada">${nota.bajada || ''}</p>
-        `;
-
-        card.addEventListener('click', () => navegarA(nota.id));
-        return card;
-      }
-
-      // Carga y despliega el visor del artículo completo
-      async function cargarYMostrarArticulo(id, actualizarHistorial = true) {
-        const nota = await obtenerNota(id);
-        if (!nota) {
-          alert('El artículo solicitado no existe o no se pudo cargar.');
-          navegarA(null);
-          return;
-        }
-
-        // Llenar datos en la vista
-        document.getElementById('art-categoria').textContent = nota.categoria || 'General';
-        document.getElementById('art-titulo').textContent = nota.titulo;
-        document.getElementById('art-bajada').textContent = nota.bajada || '';
-        document.getElementById('art-autor').textContent = nota.autor || 'Redacción';
-        document.getElementById('art-fecha').textContent = nota.fecha || '';
-
-        const imgFrame = document.getElementById('art-imagen-frame');
-        imgFrame.innerHTML = nota.imagen ? `<img src="${nota.imagen}" alt="${nota.titulo}">` : '';
-
-        const cuerpoFrame = document.getElementById('art-cuerpo');
-        if (Array.isArray(nota.cuerpo)) {
-          cuerpoFrame.innerHTML = nota.cuerpo.map(p => `<p>${p}</p>`).join('');
-        } else {
-          cuerpoFrame.innerHTML = `<p>${nota.cuerpo}</p>`;
-        }
-
-        // Mostrar Visor de Artículo y Ocultar Portada
-        vistaPortada.classList.add('hidden');
-        vistaArticulo.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      function mostrarPortadaUI() {
-        vistaArticulo.classList.add('hidden');
-        vistaPortada.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  </script>
-</body>
-</html>
