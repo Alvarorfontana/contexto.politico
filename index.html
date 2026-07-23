@@ -1,181 +1,567 @@
+¡Entendido! **The Guardian** se caracteriza por una paleta de colores icónica y muy distinguida dentro del periodismo global:
+
+* **Azul marino profundo** (`#052962`) como color principal de la marca y encabezados.
+* **Azul brillante / Celestes** (`#005689` y `#00b2ff`) para acentos y categorías secundarias.
+* **Amarillo/Crema cálido** (`#ffe500` / `#fff4f2`) para destacar secciones especiales y opiniones.
+* **Rojo coral** (`#c70000`) reservado para noticias de último momento o alertas.
+
+Aquí tienes el código completo actualizado con la **paleta cromática auténtica de The Guardian**, adaptado a tu sitio **Contexto Político** con todas sus secciones, fotos y epígrafes:
+
+### Código HTML y CSS (`index.html`)
+
+Reemplaza todo el contenido de tu archivo **`index.html`** con este código y refresca la página en tu navegador:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contexto Político - Diario Digital</title>
-  <meta name="description" content="Análisis geopolítico, macroeconomía y política internacional.">
-  
-  <style>
-    :root {
-      /* Colores inspirados en The Guardian */
-      --guardian-navy: #052962;       /* Azul marino de la cabecera */
-      --guardian-blue: #005689;       /* Azul primario */
-      --guardian-red: #c70000;        /* Noticias / Internacional */
-      --guardian-orange: #e6711b;     /* Opinión */
-      --guardian-sport: #00847e;      /* Deportes */
-      
-      --bg: #f6f6f6;
-      --surface: #ffffff;
-      --text: #121212;
-      --muted: #666666;
-      --border: #dcdcdc;
-      
-      --font-serif: "GH Guardian Headline", "Georgia", "Times New Roman", serif;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexto Político | Noticias e Investigación</title>
+    <!-- Fuentes periodísticas estilo The Guardian -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        /* --- PALETA CROMÁTICA AUTÉNTICA DE THE GUARDIAN --- */
+        :root {
+            --guardian-navy: #052962;       /* Azul marino distintivo */
+            --guardian-blue: #005689;       /* Azul secundario */
+            --guardian-accent: #00b2ff;     /* Celeste de acento */
+            --guardian-yellow: #ffe500;     /* Amarillo Guardian */
+            --guardian-red: #c70000;        /* Rojo de urgencia/alertas */
+            --guardian-dark: #121212;       /* Texto oscuro */
+            --guardian-bg: #f6f6f6;         /* Fondo gris tenue */
+            --guardian-line: #dcdcdc;       /* Líneas divisoras */
+            --guardian-opinion-bg: #fef9e7; /* Fondo crema para columnas de opinión */
+            --blanco: #ffffff;
+            
+            --fuente-titulo: 'Merriweather', Georgia, serif;
+            --fuente-sans: 'Public Sans', -apple-system, sans-serif;
+        }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
+        body {
+            font-family: var(--fuente-sans);
+            background-color: var(--guardian-bg);
+            color: var(--guardian-dark);
+            line-height: 1.4;
+        }
 
-    /* 1. Header estilo The Guardian (Azul Marino) */
-    .site-header {
-      background: var(--guardian-navy);
-      color: #ffffff;
-      padding: 1.5rem 0 0 0;
-    }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-bottom: 1rem;
-    }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-    .site-title {
-      font-family: var(--font-serif);
-      font-size: 2.8rem;
-      font-weight: 900;
-      letter-spacing: -1px;
-      cursor: pointer;
-      color: #ffffff;
-      line-height: 1;
-    }
+        /* --- ENCABEZADO ESTILO THE GUARDIAN --- */
+        header {
+            background-color: var(--guardian-navy);
+            color: var(--blanco);
+            border-bottom: 3px solid var(--guardian-yellow);
+        }
 
-    .site-tagline {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #ffe500; /* Amarillo característico */
-    }
+        .top-subhead {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.8rem;
+            color: #d1e8ff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
 
-    /* 2. Barra de Navegación con Solapas */
-    .nav-sections {
-      background: var(--guardian-navy);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
+        .header-main {
+            padding: 25px 0 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
 
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 0.25rem;
-      overflow-x: auto;
-    }
+        .site-title {
+            font-family: var(--fuente-titulo);
+            font-size: 3.6rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: var(--blanco);
+            line-height: 0.95;
+        }
 
-    .nav-item a {
-      display: block;
-      padding: 0.6rem 1rem;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border-top: 4px solid transparent;
-      transition: all 0.2s ease;
-    }
+        .site-title span {
+            color: var(--guardian-accent);
+        }
 
-    /* Colores por solapa/sección */
-    .nav-item[data-sec="noticias"] a:hover,
-    .nav-item[data-sec="noticias"].active a { border-top-color: var(--guardian-red); background: rgba(255,255,255,0.05); }
-    
-    .nav-item[data-sec="opinion"] a:hover,
-    .nav-item[data-sec="opinion"].active a { border-top-color: var(--guardian-orange); background: rgba(255,255,255,0.05); }
-    
-    .nav-item[data-sec="deportes"] a:hover,
-    .nav-item[data-sec="deportes"].active a { border-top-color: var(--guardian-sport); background: rgba(255,255,255,0.05); }
+        .edition-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--guardian-yellow);
+            margin-bottom: 6px;
+        }
 
-    .nav-item[data-sec="economia"] a:hover,
-    .nav-item[data-sec="economia"].active a { border-top-color: var(--guardian-blue); background: rgba(255,255,255,0.05); }
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background-color: var(--guardian-navy);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* Layout Principal */
-    main {
-      padding-top: 2rem;
-    }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
 
-    .grid-portada {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 1.5rem;
-    }
+        .nav-menu li a {
+            display: block;
+            padding: 12px 18px;
+            color: var(--blanco);
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: background 0.15s, color 0.15s;
+            border-top: 3px solid transparent;
+        }
 
-    @media (max-width: 900px) {
-      .grid-portada { grid-template-columns: 1fr; }
-    }
+        .nav-menu li a:hover {
+            background-color: #031b42;
+            border-top-color: var(--guardian-yellow);
+            color: var(--guardian-yellow);
+        }
 
-    /* 3. Encabezados de Columna con Código de Color */
-    .col-title {
-      font-size: 1.1rem;
-      font-family: var(--font-serif);
-      font-weight: 800;
-      border-top: 3px solid var(--guardian-navy);
-      padding-top: 0.4rem;
-      margin-bottom: 1.2rem;
-      color: var(--guardian-navy);
-    }
+        /* --- CUERPO Y PORTADA --- */
+        main {
+            padding: 20px 0;
+            background-color: var(--blanco);
+            border-left: 1px solid var(--guardian-line);
+            border-right: 1px solid var(--guardian-line);
+        }
 
-    .col-title.noticias-accent { border-top-color: var(--guardian-red); color: var(--guardian-red); }
-    .col-title.opinion-accent { border-top-color: var(--guardian-orange); color: var(--guardian-orange); }
+        .guardian-banner {
+            border-bottom: 2px solid var(--guardian-navy);
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+            font-family: var(--fuente-sans);
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--guardian-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    /* Tarjetas de Noticia */
-    .card {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
+        /* GRILLA PRINCIPAL (3 COLUMNAS) */
+        .frontpage-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1.5fr 1fr;
+            gap: 20px;
+            border-bottom: 1px solid var(--guardian-line);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
 
-    .card:hover {
-      background-color: #f0f0f0;
-    }
+        /* COLUMNA 1: NOTICIA DESTACADA */
+        .lead-article {
+            border-right: 1px solid var(--guardian-line);
+            padding-right: 20px;
+        }
 
-    .tag {
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-bottom: 0.3rem;
-      color: var(--guardian-red);
-    }
+        .article-kicker {
+            color: var(--guardian-red);
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-    .opinion-story .tag { color: var(--guardian-orange); }
+        .lead-title {
+            font-family: var(--fuente-titulo);
+            font-size: 2.3rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            color: var(--guardian-navy);
+        }
 
-    .card h2 {
-      font-family: var(--font-serif);
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
+        .lead-title:hover {
+            color: var(--guardian-blue);
+        }
 
-    .lead-story h2 { font-size: 2rem; }
-    .secundario-story h2 { font-size: 1.3rem; }
-    .opinion-story h2 { font-size: 1.2rem; font-style: italic; }
+        .lead-subtitle {
+            font-family: var(--fuente-sans);
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
 
-    .card img {
+        figure {
+            margin-bottom: 12px;
+        }
+
+        figcaption {
+            font-size: 0.8rem;
+            color: #555;
+            padding-top: 6px;
+            border-top: 2px solid var(--guardian-blue);
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+
+        figcaption strong {
+            color: var(--guardian-navy);
+        }
+
+        /* COLUMNA 2: SECUNDARIAS */
+        .secondary-column {
+            border-right: 1px solid var(--guardian-line);
+            padding-right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sub-article {
+            border-bottom: 1px solid var(--guardian-line);
+            padding-bottom: 15px;
+        }
+
+        .sub-article:last-child {
+            border-bottom: none;
+        }
+
+        .sub-title {
+            font-family: var(--fuente-titulo);
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            color: var(--guardian-dark);
+        }
+
+        .sub-title a:hover {
+            color: var(--guardian-blue);
+        }
+
+        /* COLUMNA 3: OPINIÓN (FONDO AMARILLO/CREMA) */
+        .opinion-column {
+            background-color: var(--guardian-opinion-bg);
+            padding: 15px;
+            border-top: 4px solid var(--guardian-yellow);
+            border-left: 1px solid #f2e3b8;
+            border-right: 1px solid #f2e3b8;
+            border-bottom: 1px solid #f2e3b8;
+        }
+
+        .opinion-title {
+            font-family: var(--fuente-titulo);
+            font-size: 1.1rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: var(--guardian-navy);
+        }
+
+        .opinion-card {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e8d7a5;
+            padding-bottom: 10px;
+        }
+
+        .opinion-card:last-child {
+            border-bottom: none;
+        }
+
+        .author-name {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--guardian-navy);
+        }
+
+        /* SECCIONES POR REGIONES Y TEMAS */
+        .section-row {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 2px solid var(--guardian-navy);
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .card-news {
+            border-top: 1px solid var(--guardian-line);
+            padding-top: 10px;
+        }
+
+        .card-news h3 {
+            font-family: var(--fuente-titulo);
+            font-size: 1.15rem;
+            margin-top: 8px;
+            line-height: 1.25;
+            color: var(--guardian-dark);
+        }
+
+        .card-news h3 a:hover {
+            color: var(--guardian-blue);
+        }
+
+        /* PIE DE PÁGINA (FOOTER) */
+        footer {
+            background-color: var(--guardian-navy);
+            color: var(--blanco);
+            padding: 40px 0 20px 0;
+            border-top: 4px solid var(--guardian-yellow);
+            font-family: var(--fuente-sans);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand {
+            font-family: var(--fuente-titulo);
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand span { color: var(--guardian-accent); }
+
+        .footer-info p {
+            font-size: 0.85rem;
+            color: #d1e8ff;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #a0c4e8;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .frontpage-grid {
+                grid-template-columns: 1fr;
+            }
+            .lead-article, .secondary-column {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid var(--guardian-line);
+                padding-bottom: 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .site-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PRINCIPAL -->
+    <header>
+        <div class="container">
+            <div class="top-subhead">
+                <span>Edición Digital Argentina e Internacional</span>
+                <span>Martes, 2026</span>
+            </div>
+            <div class="header-main">
+                <div>
+                    <div class="edition-tag">Periodismo Político de Investigación</div>
+                    <a href="#"><h1 class="site-title">Contexto <span>Político</span></h1></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav>
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#nacional">Nacional</a></li>
+                <li><a href="#gremiales">Gremiales</a></li>
+                <li><a href="#latam">Latinoamérica</a></li>
+                <li><a href="#eeuu">EE.UU.</a></li>
+                <li><a href="#europa">Europa</a></li>
+                <li><a href="#asia">Asia</a></li>
+                <li><a href="#medio-oriente">Medio Oriente</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PORTADA Y NOTICIAS -->
+    <main>
+        <div class="container">
+
+            <div class="guardian-banner">
+                <span>/// Titulares Principales</span>
+            </div>
+
+            <div class="frontpage-grid">
+
+                <!-- COLUMNA 1: NOTICIA PRINCIPAL -->
+                <article class="lead-article" id="nacional">
+                    <span class="article-kicker">Política Nacional & Geopolítica</span>
+                    <a href="#">
+                        <h2 class="lead-title">Reconfiguración estratégica de los mercados energéticos y acuerdos bilaterales</h2>
+                    </a>
+                    <p class="lead-subtitle">
+                        Un análisis exhaustivo sobre los recientes movimientos normativos e institucionales que impactan de manera directa en el comercio regional y la infraestructura estratégica.
+                    </p>
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1000&q=80" alt="Congreso y Política">
+                        <figcaption>
+                            <strong>Enfoque:</strong> Las comisiones parlamentarias debaten los alcances de las nuevas normativas institucionales. Fotografía: Redacción.
+                        </figcaption>
+                    </figure>
+                </article>
+
+                <!-- COLUMNA 2: NOTICIAS SECUNDARIAS -->
+                <section class="secondary-column">
+
+                    <article class="sub-article" id="gremiales">
+                        <span class="article-kicker">Gremiales</span>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&w=600&q=80" alt="Mesa de negociación">
+                            <figcaption><strong>Encuentro:</strong> Reunión entre delegados y sectores productivos.</figcaption>
+                        </figure>
+                        <h3 class="sub-title"><a href="#">Avanzan las negociaciones paritarias con foco en la pauta de recomposición</a></h3>
+                        <p style="font-size: 0.88rem; color: #555;">Representantes gremiales buscan definir los acuerdos del próximo trimestre en medio de complejas mesas de diálogo.</p>
+                    </article>
+
+                    <article class="sub-article">
+                        <span class="article-kicker">Economía & Política</span>
+                        <h3 class="sub-title"><a href="#">El impacto de las tasas y los flujos financieros en las economías emergentes</a></h3>
+                    </article>
+
+                </section>
+
+                <!-- COLUMNA 3: SECCIÓN DE OPINIÓN (ESTILO GUARDIAN) -->
+                <aside class="opinion-column">
+                    <div class="opinion-title">Análisis & Columnas</div>
+
+                    <div class="opinion-card">
+                        <span class="author-name">Análisis Internacional</span>
+                        <h4 style="font-family: var(--fuente-titulo); font-size: 0.95rem; margin-top: 4px;">
+                            <a href="#">El equilibrio geopolítico en los pasos marítimos de Asia y Medio Oriente</a>
+                        </h4>
+                    </div>
+
+                    <div class="opinion-card">
+                        <span class="author-name">Informe Especial</span>
+                        <h4 style="font-family: var(--fuente-titulo); font-size: 0.95rem; margin-top: 4px;">
+                            <a href="#">Las transformaciones legislativas que reconfiguran el empleo público</a>
+                        </h4>
+                    </div>
+
+                </aside>
+
+            </div>
+
+            <!-- GRILLA DE ÁREAS REGIONALES -->
+            <div class="section-row">
+                <div class="guardian-banner">
+                    <span>/// Cobertura Internacional</span>
+                </div>
+
+                <div class="section-grid">
+
+                    <!-- LATINOAMÉRICA -->
+                    <article class="card-news" id="latam">
+                        <span class="article-kicker">Latinoamérica</span>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="Latinoamérica">
+                            <figcaption><strong>Cumbre:</strong> Avances en integración económica regional.</figcaption>
+                        </figure>
+                        <h3><a href="#">Nuevos ejes diplomáticos y acuerdos comerciales en Sudamérica</a></h3>
+                    </article>
+
+                    <!-- ESTADOS UNIDOS -->
+                    <article class="card-news" id="eeuu">
+                        <span class="article-kicker">Estados Unidos</span>
+                        <h3><a href="#">Debates presupuestarios marcan la pauta legislativa en Washington</a></h3>
+                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Las comisiones de política exterior analizan partidas clave para la región.</p>
+                    </article>
+
+                    <!-- EUROPA -->
+                    <article class="card-news" id="europa">
+                        <span class="article-kicker">Europa</span>
+                        <h3><a href="#">Bruselas reajusta las pautas regulatorias para el mercado energético</a></h3>
+                        <p style="font-size: 0.85rem; color: #555; margin-top: 5px;">Medidas orientadas a garantizar la resiliencia en la transición verde.</p>
+                    </article>
+
+                    <!-- MEDIO ORIENTE & ASIA -->
+                    <article class="card-news" id="medio-oriente">
+                        <span class="article-kicker">Medio Oriente & Asia</span>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80" alt="Medio Oriente">
+                            <figcaption><strong>Rutas comerciales:</strong> Monitoreo de corredores de carga.</figcaption>
+                        </figure>
+                        <h3><a href="#">Dinamismo en los estrechos clave y logística de hidrocarburos</a></h3>
+                    </article>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-info">
+                    <div class="footer-brand">Contexto <span>Político</span></div>
+                    <p>Publicación especializada en análisis geopolítico, asuntos legislativos, movimiento gremial y política internacional.</p>
+                </div>
+
+                <div class="footer-info">
+                    <h4 style="color: var(--guardian-yellow); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;">Institucional</h4>
+                    <p><strong>Director Responsable:</strong> Álvaro Ramón Fontana Leguizamón</p>
+                    <p><strong>Redacción:</strong> contacto@contextopolitico.com</p>
+                </div>
+
+                <div class="footer-info">
+                    <h4 style="color: var(--guardian-yellow); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;">Sede Central</h4>
+                    <p>Av. de Mayo 1234, CABA</p>
+                    <p>República Argentina</p>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 Contexto Político — Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+```
