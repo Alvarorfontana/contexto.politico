@@ -1,1 +1,7 @@
-
+{
+  "portada": [
+    { "id": "nota-1", "posicion": "lead" },
+    { "id": "nota-2", "posicion": "secundario" },
+    { "id": "nota-3", "posicion": "opinion" }
+  ]
+}
