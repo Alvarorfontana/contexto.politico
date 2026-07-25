@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de noticia</title>
+    <style>
+        :root {
+            --guardian-navy: #052962;
+            --guardian-blue: #005689;
+            --guardian-accent: #00b2ff;
+            --guardian-yellow: #ffe500;
+            --guardian-red: #c70000;
+            --guardian-dark: #121212;
+            --guardian-bg: #f6f6f6;
+            --guardian-line: #dcdcdc;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: var(--guardian-bg);
+            color: var(--guardian-dark);
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: var(--guardian-blue); font-weight: 700; }
+        .card { background: white; border: 1px solid var(--guardian-line); padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .meta { color: #666; font-size: 0.9rem; margin-bottom: 12px; }
+        .title { font-size: 2rem; color: var(--guardian-navy); margin: 0 0 12px; }
+        .image { max-width: 100%; margin: 16px 0; }
+        .content p { line-height: 1.7; margin-bottom: 12px; }
+        .loading { color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="index.html">← Volver a la portada</a>
+        <article class="card">
+            <div id="loading" class="loading">Cargando noticia...</div>
+            <div id="article-content" hidden></div>
+        </article>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const articleId = params.get('id') || 'nota-1';
+
+        async function loadArticle() {
+            const manifestUrl = './noticias/manifest.json';
+            const response = await fetch(manifestUrl);
+            const manifest = await response.json();
+            const articleMeta = manifest.portada.find(item => item.id === articleId);
+            const noteUrl = articleMeta ? `./noticias/${articleId}.json` : `./noticias/${articleId}.json`;
+            const noteResponse = await fetch(noteUrl);
+            const article = await noteResponse.json();
+
+            const container = document.getElementById('article-content');
+            const loading = document.getElementById('loading');
+            loading.hidden = true;
+            container.hidden = false;
+
+            document.title = article.titulo;
+            container.innerHTML = `
+                <div class="meta">${article.categoria} · ${article.fecha} · ${article.autor}</div>
+                <h1 class="title">${article.titulo}</h1>
+                <p>${article.bajada}</p>
+                ${article.imagen ? `<img class="image" src="${article.imagen}" alt="${article.titulo}">` : ''}
+                <div class="content">
+                    ${article.cuerpo.map(paragraph => `<p>${paragraph}</p>`).join('')}
+                </div>
+            `;
+        }
+
+        loadArticle().catch(() => {
+            document.getElementById('loading').innerHTML = 'No se pudo cargar la noticia solicitada.';
+        });
+    </script>
+</body>
+</html>
